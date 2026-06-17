@@ -1,0 +1,8 @@
+Priya Patel
+
+Skills:
+Docker, Kubernetes, MLflow, Airflow, AWS
+
+Experience:
+Built ML deployment pipelines.
+Implemented model monitoring solutions.

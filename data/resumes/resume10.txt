@@ -1,0 +1,18 @@
+Daniel Brooks
+
+Education
+M.S. Artificial Intelligence
+
+Skills
+Python, Machine Learning, SQL, Product Management, Data Analysis, Tableau
+
+Experience
+AI Product Analyst
+
+Collaborated with engineering teams on ML-driven products.
+Performed data analysis and model evaluation.
+Gathered requirements for AI features.
+
+Projects
+Developed predictive analytics dashboards.
+Built a recommendation system prototype.

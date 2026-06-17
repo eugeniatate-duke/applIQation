@@ -1,0 +1,16 @@
+Alex Turner
+
+Education
+B.S. Computer Science
+
+Skills
+Java, Python, Data Structures, Algorithms, Git, Object-Oriented Programming
+
+Projects
+Built a student course registration system using Java.
+Implemented graph and sorting algorithms for academic projects.
+
+Experience
+Software Engineering Intern
+Developed internal tools in Python.
+Participated in code reviews and testing.

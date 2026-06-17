@@ -1,0 +1,8 @@
+David Lee
+
+Skills:
+LangChain, LlamaIndex, RAG, Vector Databases, Prompt Engineering
+
+Experience:
+Built retrieval-augmented generation systems.
+Created question-answering applications using LLMs.

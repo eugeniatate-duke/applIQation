@@ -1,0 +1,8 @@
+Michael Chen
+
+Skills:
+Python, FastAPI, Flask, Docker, REST APIs
+
+Experience:
+Built backend services and deployed containerized applications.
+Developed microservices architecture.
