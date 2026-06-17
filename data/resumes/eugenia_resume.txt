@@ -1,0 +1,143 @@
+Eugenia Tate
+
+Education
+
+Duke University
+Master of Engineering in Artificial Intelligence
+Expected May 2027
+GPA: 4.0
+
+Relevant Coursework:
+Deep Learning
+Machine Learning Algorithms
+Sourcing Data for Analytics
+Operationalizing AI
+
+Georgia Institute of Technology
+Master of Science in Computer Science
+Specialization: Machine Learning and Computing Systems
+Expected May 2028
+GPA: 3.5
+
+Relevant Coursework:
+Graduate Introduction to Operating Systems
+Machine Learning for Trading
+Natural Language Processing
+
+University of Washington
+Bachelor of Arts in Applied Computing
+Minor in Business Administration
+
+Skills
+
+Programming Languages:
+Python
+Java
+C++
+
+Software Development:
+Agile Methodologies
+Git
+Version Control
+Debugging
+Unit Testing
+Automation
+
+Web Development:
+HTML
+CSS
+React
+
+Databases:
+SQL Server
+Microsoft Access
+
+Operating Systems:
+Windows
+MacOS
+Ubuntu Linux
+
+Tools:
+MySQL
+Git
+Jupyter Notebooks
+
+Professional Experience
+
+Software Engineer
+Workday
+July 2018 - Present
+
+Led implementation and delivery of a generative AI feature deployed to production and scaled globally.
+
+Resolved resiliency issues related to external LLM endpoint integrations.
+
+Developed and maintained features using Java and object-oriented programming.
+
+Served as Scrum Master while participating in Agile development.
+
+Led automation initiatives and managed pipelines for multiple teams.
+
+Conducted code reviews and improved software quality.
+
+Mentored new developers through pair programming and knowledge sharing.
+
+Developed unit, integration, and system-level tests.
+
+Collaborated with product managers and QA engineers.
+
+Led feature development and roadmap planning.
+
+Developed frontend features using React, JavaScript, HTML, and CSS.
+
+Technical Analyst
+Accenture
+February 2018 - June 2018
+
+Performed performance testing and system analysis.
+
+Identified bottlenecks and recommended optimizations.
+
+Collaborated with clients and technical teams to solve business problems.
+
+Projects
+
+Inventory System Automation
+
+Developed a C++ inventory management system.
+
+Used:
+Inheritance
+Binary Search Trees
+Hash Tables
+Factory Methods
+
+Banking System
+
+Developed a banking transaction processing system in C++.
+
+Used:
+Inheritance
+Binary Search Trees
+Linked Queues
+
+Easy Register Application Design
+
+Analyzed and designed a student registration application.
+
+Created:
+Requirements Specifications
+Wireframes
+Use Cases
+Class Diagrams
+Sequence Diagrams
+
+Seattle Badminton Club Database
+
+Designed and implemented a SQL database system.
+
+Created:
+Entity Relationship Diagrams
+Relational Data Models
+SQL Queries
+Database Documentation
