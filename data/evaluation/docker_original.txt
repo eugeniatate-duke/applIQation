@@ -1,0 +1,9 @@
+Required Skills:
+
+Docker
+
+AWS
+
+Python
+
+PyTorch
