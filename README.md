@@ -1,0 +1,1 @@
+NLP systems are increasingly used for career guidance. Misinterpreting resumes or job requirements can cause candidates to overestimate or underestimate their readiness. ApplIQation evaluates job readiness, identifies skill gaps, and generates assessment questions to validate candidate preparedness.
