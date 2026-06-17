@@ -1,0 +1,9 @@
+Required Skills:
+
+Experience deploying containerized applications
+
+Cloud infrastructure experience
+
+Python
+
+PyTorch

@@ -1,0 +1,9 @@
+Required Skills:
+
+Containerization
+
+Amazon Web Services
+
+Python
+
+PyTorch

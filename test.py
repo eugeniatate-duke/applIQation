@@ -92,5 +92,5 @@ for i, q in enumerate(
     print(f"{i}. {q}")
 
 
-with open("sample_output.json", "w") as f:
+with open("outputs/sample_output.json", "w") as f:
     json.dump(llm_result, f, indent=2)
