@@ -1,4 +1,6 @@
+import json
 from pathlib import Path
+from src.llm_assessor import assess_candidate
 
 from src.extract_skills import (
     load_taxonomy,
@@ -19,6 +21,11 @@ job_path = "data/job_descriptions/ml-eng.txt"
 resume_text = Path(resume_path).read_text()
 job_text = Path(job_path).read_text()
 
+llm_result = assess_candidate(
+    resume_text,
+    job_text,
+    target_role="ML Engineer"
+)
 
 resume_results = extract_skills(
     resume_text,
@@ -56,3 +63,34 @@ print(resume_results["capabilities"])
 
 print("\nJob Capabilities:")
 print(job_results["capabilities"])
+
+print("\n===== LLM ASSESSMENT =====\n")
+
+print(
+    f"Readiness Score: "
+    f"{llm_result['readiness_score']}"
+)
+
+print(
+    f"Recommendation: "
+    f"{llm_result['recommendation']}"
+)
+
+print("\nStrengths:")
+for item in llm_result["strengths"]:
+    print("-", item)
+
+print("\nGaps:")
+for item in llm_result["gaps"]:
+    print("-", item)
+
+print("\nAssessment Questions:")
+for i, q in enumerate(
+    llm_result["assessment_questions"],
+    start=1
+):
+    print(f"{i}. {q}")
+
+
+with open("sample_output.json", "w") as f:
+    json.dump(llm_result, f, indent=2)
