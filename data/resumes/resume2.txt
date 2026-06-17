@@ -1,0 +1,8 @@
+Sarah Johnson
+
+Skills:
+SQL, Tableau, Power BI, Python, Statistics
+
+Experience:
+Built dashboards and reporting pipelines.
+Performed exploratory data analysis and forecasting.

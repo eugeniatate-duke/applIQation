@@ -1,0 +1,61 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Environment Variables
+.env
+.env.*
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Streamlit Secrets
+.streamlit/secrets.toml
+
+# Logs
+*.log
+
+# Temporary Files
+*.tmp
+*.temp
+
+# Build / Distribution
+build/
+dist/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+
+# Generated Outputs
+outputs/
+results/
+
+# Model Artifacts (if created later)
+models/
+*.pkl
+*.joblib
+
+# Hugging Face Cache
+.cache/
+hf_cache/

@@ -1,0 +1,121 @@
+{
+  "Software Engineering": [
+    "java",
+    "python",
+    "c++",
+    "c#",
+    "javascript",
+    "typescript",
+    "software engineering",
+    "object oriented programming",
+    "data structures",
+    "algorithms",
+    "system design",
+    "design patterns"
+  ],
+
+  "Backend Development": [
+    "fastapi",
+    "flask",
+    "django",
+    "spring boot",
+    "node.js",
+    "rest api",
+    "graphql",
+    "microservices",
+    "backend",
+    "api development"
+  ],
+
+  "Cloud": [
+    "aws",
+    "amazon web services",
+    "azure",
+    "gcp",
+    "google cloud",
+    "terraform",
+    "ec2",
+    "lambda",
+    "sagemaker"
+  ],
+
+  "MLOps": [
+    "docker",
+    "kubernetes",
+    "mlflow",
+    "airflow",
+    "ci/cd",
+    "jenkins",
+    "model monitoring",
+    "deployment"
+  ],
+
+  "Machine Learning": [
+    "machine learning",
+    "scikit-learn",
+    "xgboost",
+    "lightgbm",
+    "supervised learning",
+    "unsupervised learning",
+    "feature engineering"
+  ],
+
+  "Deep Learning": [
+    "pytorch",
+    "tensorflow",
+    "keras",
+    "cnn",
+    "rnn",
+    "transformer",
+    "neural network",
+    "deep learning"
+  ],
+
+  "Computer Vision": [
+    "opencv",
+    "computer vision",
+    "image classification",
+    "object detection",
+    "segmentation",
+    "yolo"
+  ],
+
+  "NLP": [
+    "nlp",
+    "bert",
+    "transformers",
+    "hugging face",
+    "tokenization",
+    "sentiment analysis",
+    "llm"
+  ],
+
+  "Data Engineering": [
+    "spark",
+    "hadoop",
+    "etl",
+    "airflow",
+    "databricks",
+    "data pipeline",
+    "data warehouse"
+  ],
+
+  "Databases": [
+    "sql",
+    "postgresql",
+    "mysql",
+    "mongodb",
+    "redis",
+    "database design"
+  ],
+
+  "DevOps": [
+    "linux",
+    "git",
+    "github actions",
+    "bash",
+    "shell scripting",
+    "monitoring",
+    "observability"
+  ]
+}

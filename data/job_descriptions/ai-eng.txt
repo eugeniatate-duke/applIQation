@@ -1,0 +1,103 @@
+Aufgaben
+
+Shape the future today.
+
+The world is changing. The question is, what will be our contribution to the outcome? We have set the pace in the field of mobility from the very beginning, and we will continue to do so. At Mercedes-Benz Vans, interdisciplinary teams are developing the mobility of tomorrow. Our goal is to make mobility safer, simpler, and more sustainable for people across the globe. Put your pioneering spirit to good use: This is your opportunity to make a contribution that extends far beyond your job title.
+
+At Mercedes-Benz Vans, we offer you the perfect environment for your professional and personal growth. Cutting-edge training and promising career opportunities will help you to foster and expand your professional skill set as well as your individual strengths. Think, try, and thrive with us in collaborative work environments that spark game-changing concepts.
+
+Job Overview:
+
+Designs and implements AI and machine learning solutions to improve manufacturing and business processes.
+
+Works with cross-functional teams to integrate AI into production systems and decision-making.
+
+Supports full AI lifecycle from development to deployment and continuous improvement.
+
+Responsibilities:
+
+Develop and deploy machine learning models and AI applications using frameworks such as TensorFlow, Spark MLlib, and other AI tools to solve complex problems involving natural language processing, data mining, and unsupervised learning.
+
+Conduct model training, validation, and deployment ensuring robustness and accuracy across various AI applications.
+
+Utilize cloud services such as AWS for model deployment and scaling AI applications in production environments.
+
+Analyze large datasets to identify trends and optimization opportunities.
+
+Build and maintain data pipelines and AI systems.
+
+Collaborate with engineering and operations teams to integrate AI solutions into existing systems using Java, Python, R, SAS, VBA, and other programming languages.
+
+Define and track KPIs for AI solutions.
+
+Financial Responsibilities:
+
+Support budget tracking and ROI evaluation for AI projects.
+
+Develop dashboards and visualizations using Looker or similar tools to communicate insights effectively to stakeholders.
+
+Perform root cause analysis using AI techniques.
+
+Ensure data governance and compliance.
+
+Document models and provide training.
+
+Manage AI-related projects and timelines.
+
+Stay current with advancements in machine learning frameworks, natural language processing techniques, big data technologies like Hadoop and Spark, and emerging trends in AI.
+
+Qualifikationen
+
+Qualifications:
+
+Bachelor’s degree in Computer Science, Engineering, or related field.
+
+3–5 years of AI/ML or data engineering experience preferred.
+
+Manufacturing Or Automotive Experience Preferred.
+
+Knowledge & Skills:
+
+Machine learning frameworks (TensorFlow, PyTorch).
+
+Programming in Python or similar.
+
+Cloud platforms experience (Azure, AWS).
+
+Data analysis and database knowledge.
+
+Proven experience in AI development with a strong understanding of machine learning algorithms including supervised and unsupervised learning methods.
+
+Proficiency in programming languages such as Python, Java, R, C, VBA, Bash (Unix shell), with hands-on experience in model training and deployment.
+
+Extensive knowledge of big data tools like Hadoop, Spark, Talend, ETL processes, SQL databases, and database design principles.
+
+Knowledge of natural language processing techniques and applications in real-world scenarios.
+
+Strong analytical and problem-solving skills with the ability to interpret complex data sets effectively.
+
+We are all in for change. Are you too? Apply now.
+
+If you have experience in the above and are interested in joining an outstanding company we welcome you to apply. The division Mercedes-Benz Vans is world renown for quality and innovative products.
+
+Benefits
+
+EXCELLENT COMPENSATION & BENEFITS PLAN WITH 401k MATCHING
+
+Mitarbeiterhandy möglich
+
+Gesundheitsmaßnahmen
+
+Mitarbeiterrabatte möglich
+
+Mitarbeiter Events
+
+Parkplatz
+
+KontaktMercedes-Benz Vans, LLC
+
+8501 Palmetto Commerce Pkwy29456 CharlestonDetails zum Standort
+
+Lauren Ramel E-Mail: lauren.ramel@mercedes-benz.com
+
+Bewerben

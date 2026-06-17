@@ -1,0 +1,14 @@
+Rachel Kim
+
+Skills
+AWS, Terraform, Docker, Linux, CI/CD, GitHub Actions
+
+Experience
+Cloud Engineer
+
+Provisioned infrastructure using Terraform.
+Managed AWS services including EC2 and Lambda.
+Implemented CI/CD pipelines for software deployments.
+
+Projects
+Built automated cloud deployment workflows.

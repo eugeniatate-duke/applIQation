@@ -1,0 +1,11 @@
+John Smith
+
+Education:
+M.S. Artificial Intelligence
+
+Skills:
+Python, PyTorch, CNNs, Computer Vision, Scikit-Learn, Pandas
+
+Projects:
+Developed an image classification model using transfer learning.
+Built a computer vision application using PyTorch.

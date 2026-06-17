@@ -1,0 +1,18 @@
+Kevin Wang
+
+Education
+M.S. Artificial Intelligence
+
+Skills
+Python, PyTorch, Transformers, NLP, Hugging Face, Deep Learning
+
+Experience
+AI Research Intern
+
+Fine-tuned transformer models for text classification.
+Conducted experiments on language model performance.
+Implemented evaluation pipelines for NLP tasks.
+
+Projects
+Built a sentiment analysis system using BERT.
+Developed a question-answering prototype using transformers.

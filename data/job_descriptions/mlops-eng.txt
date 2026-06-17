@@ -1,0 +1,65 @@
+Job Description:
+
+The Machine Learning Operations (MLOps) Engineer will support our AI/ML initiatives by streamlining the deployment, monitoring, and scaling of machine learning models in production environments. The incumbent will have a solid understanding of machine learning workflows, DevOps principles, and cloud technologies, with a focus on optimizing machine learning pipelines and ensuring reliable and efficient operations.
+Model Deployment and Integration:
+
+Implement and maintain CI/CD pipelines for deploying machine learning models to production environments.
+
+Ensure seamless integration of machine learning models into existing software systems.
+
+
+Infrastructure and Automation:
+
+Design and manage scalable infrastructure for training, testing, and serving machine learning models.
+
+Automate data preprocessing, model training, and deployment workflows.
+
+ 
+Monitoring and Optimization:
+
+Monitor the performance of deployed models and systems, identifying and resolving issues proactively.
+
+Optimize model inference latency, scalability, and resource utilization.
+
+ 
+Collaboration:
+
+Work closely with data scientists, software engineers, and product teams to understand requirements and deliver operational solutions.
+
+Collaborate with DevOps and cloud engineering teams to ensure infrastructure reliability and security.
+
+
+Data and Model Management:
+
+Maintain version control for datasets, models, and code.
+
+Implement best practices for data and model governance, ensuring compliance with organizational and regulatory requirements.
+
+
+Continuous Improvement:
+
+Stay updated with the latest trends in MLOps tools, frameworks, and practices.
+
+Recommend and implement improvements to the MLOps processes and infrastructure.
+
+Perform other duties that support the overall objective of the position.
+
+Education Required:
+Bachelor’s degree in Computer Science, Data Science, Engineering, or a related field.
+
+Or, any combination of education and experience which would provide the required qualifications for the position.
+
+Experience Required:
+2-3 years of hands-on experience in MLOps, DevOps, or related roles.
+Experience with MLOps tools and platforms like MLflow, Kubeflow, or SageMaker.
+Experience with feature stores and model versioning systems.
+Experience in building CI/CD pipelines using tools like Jenkins, GitLab CI, or similar.
+
+Knowledge, Skills & Abilities:
+Knowledge of: Proficiency in Python and familiarity wStrong understanding of containerization and orchestration tools (e.g., Docker,
+Kubernetes). Strong understanding of containerization and orchestration tools (e.g., Docker, Kubernetes). Familiarity with distributed computing frameworks (e.g., Apache Spark). Knowledge of cloud platforms such as AWS, Azure, or Google Cloud. Solid understanding of model monitoring, logging, and debugging tools. Familiarity with database technologies and data pipelines (SQL, NoSQL, ETL/ELT processes).
+Skill in: Strong problem-solving skills and a detail-oriented mindset. Excellent communication and collaboration abilities.
+Ability to:    
+The company has reviewed this job description to ensure that essential functions and basic duties have been included. It is intended to provide guidelines for job expectations and the employee's ability to perform the position described. It is not intended to be construed as an exhaustive list of all functions, responsibilities, skills and abilities. Additional functions and requirements may be assigned by supervisors as deemed appropriate. This document does not represent a contract of employment, and the company reserves the right to change this job description and/or assign tasks for the employee to perform, as the company may deem appropriate.
+NextGen Healthcare is an equal opportunity employer. We celebrate diversity and are committed to creating an inclusive environment for all employees.
+

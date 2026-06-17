@@ -1,0 +1,14 @@
+Maria Gonzalez
+
+Skills
+SQL, Spark, Databricks, ETL, Airflow, Data Pipelines, Python
+
+Experience
+Data Engineer
+
+Designed and maintained ETL pipelines for analytics workloads.
+Built Spark jobs to process large datasets.
+Managed workflow orchestration using Airflow.
+
+Projects
+Created a cloud-based data warehouse reporting pipeline.
