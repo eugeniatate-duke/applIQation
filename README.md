@@ -1,12 +1,3 @@
----
-title: ApplIQation
-emoji: 🎯
-colorFrom: blue
-colorTo: indigo
-sdk: streamlit
-app_file: app.py
-pinned: false
----
 
 # 🎯 ApplIQation
 
@@ -14,7 +5,7 @@ pinned: false
 
 ApplIQation helps job seekers determine whether they are truly ready for a target role by comparing resume evidence against job requirements, identifying competency gaps, and generating assessment questions that validate preparedness.
 
-This project was developed for **Mini Hackathon #2: Can Machines Understand Us Reliably?** in Duke University's AI program.
+This project was developed for AIPI 540 **Mini Hackathon #2: Can Machines Understand Us Reliably?** in Duke University's AI program.
 
 ---
 
@@ -221,7 +212,7 @@ ApplIQation/
 - Market-aware skill recommendations
 - Multi-role career planning
 - Classical ML vs Transformer vs LLM comparisons
-- Enhanced visual analytics and explainability
+- Enhanced UI, visual analytics and explainability
 
 ---
 
