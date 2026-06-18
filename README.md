@@ -204,6 +204,51 @@ ApplIQation/
 
 ---
 
+## Setup and Configuration
+Clone the repository:
+
+```bash
+git clone https://github.com/eugeniatate/applIQation.git
+cd applIQation
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Create a `.env` file in the project root if you are running locally:
+
+```bash
+LITELLM_TOKEN=your_duke_ai_gateway_token
+```
+The application uses Duke AI Gateway and GPT-5-mini for candidate assessment.
+
+Launch the Streamlit app:
+
+```bash
+streamlit run app.py
+```
+
+The application will open in your browser at:
+
+```bash
+http://localhost:8501
+```
+
+To reproduce the robustness evaluation:
+
+```bash
+python -m src.evaluate_robustness
+```
+
+Results will be written to:
+
+```bash
+outputs/evaluation_results.json
+```
+
 ## Future Work
 
 - PDF and DOCX resume parsing
