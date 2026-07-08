@@ -1,0 +1,27 @@
+name: Data Scientist
+
+education:
+  - MS Data Science
+
+experience:
+  years: 
+    min: 2
+    max: 4
+
+core_skills:
+  - Python
+  - SQL
+  - Statistics
+  - Pandas
+  - Machine Learning
+
+optional_skills:
+  - Tableau
+  - Power BI
+  - Scikit-learn
+  - Spark
+  - AWS
+
+projects:
+  min: 2
+  max: 5

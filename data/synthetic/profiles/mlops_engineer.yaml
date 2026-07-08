@@ -1,0 +1,27 @@
+name: MLOps Engineer
+
+education:
+  - BS Computer Science
+
+experience:
+  years: 
+    min: 4
+    max: 6
+
+core_skills:
+  - Docker
+  - Kubernetes
+  - MLflow
+  - AWS
+  - CI/CD
+
+optional_skills:
+  - Terraform
+  - Python
+  - Airflow
+  - GitHub Actions
+  - Monitoring
+
+projects:
+  min: 3
+  max: 5

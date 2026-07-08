@@ -1,0 +1,28 @@
+name: Machine Learning Engineer
+
+education:
+  - MS Artificial Intelligence
+
+experience:
+  years: 
+    min: 2
+    max: 4
+
+core_skills:
+  - Python
+  - PyTorch
+  - Scikit-learn
+  - Machine Learning
+  - Feature Engineering
+
+optional_skills:
+  - Docker
+  - AWS
+  - SQL
+  - MLflow
+  - FastAPI
+  - TensorFlow
+
+projects:
+  min: 3
+  max: 5

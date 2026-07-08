@@ -1,0 +1,31 @@
+name: Senior Software Engineer
+
+education:
+  - BS Computer Science
+
+experience:
+  years: 
+    min: 7
+    max: 9
+
+  titles:
+    - Senior Software Engineer
+    - Technical Lead
+
+core_skills:
+  - Java
+  - System Design
+  - Microservices
+  - SQL
+  - AWS
+
+optional_skills:
+  - Kubernetes
+  - Docker
+  - Python
+  - Leadership
+  - CI/CD
+
+projects:
+  min: 5
+  max: 8

@@ -1,0 +1,33 @@
+name: Junior Software Engineer
+
+education:
+  - BS Computer Science
+
+experience:
+  years: 
+    min: 0
+    max: 3
+
+  titles:
+    - Software Engineering Intern
+    - Junior Software Engineer
+
+core_skills:
+  - Java
+  - Python
+  - Git
+  - Data Structures
+  - Algorithms
+  - Object-Oriented Programming
+
+optional_skills:
+  - SQL
+  - Docker
+  - REST API
+  - Linux
+  - React
+  - AWS
+
+projects:
+  min: 2
+  max: 4

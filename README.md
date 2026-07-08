@@ -8,7 +8,7 @@ app_file: app.py
 pinned: false
 ---
 
-# 🎯 ApplIQation
+# ApplIQation - Know Before You Apply
 
 ### AI-Powered Job Readiness Assessment
 
