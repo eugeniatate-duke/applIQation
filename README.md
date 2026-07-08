@@ -1,5 +1,5 @@
 
-# 🎯 ApplIQation
+# ApplIQation - Know Before You Apply
 
 ### AI-Powered Job Readiness Assessment
 
