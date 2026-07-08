@@ -1,0 +1,27 @@
+name: Cloud Engineer
+
+education:
+  - BS Computer Science
+
+experience:
+  years: 
+    min: 4
+    max: 6
+
+core_skills:
+  - AWS
+  - Docker
+  - Kubernetes
+  - Linux
+  - Terraform
+
+optional_skills:
+  - Azure
+  - GCP
+  - CI/CD
+  - Python
+  - Monitoring
+
+projects:
+  min: 2
+  max: 4

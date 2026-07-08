@@ -1,0 +1,27 @@
+name: Data Engineer
+
+education:
+  - BS Computer Science
+
+experience:
+  years: 
+    min: 3
+    max: 5
+
+core_skills:
+  - SQL
+  - Spark
+  - ETL
+  - Airflow
+  - Python
+
+optional_skills:
+  - Databricks
+  - AWS
+  - Kafka
+  - Hadoop
+  - Data Warehouse
+
+projects:
+  min: 3
+  max: 5

@@ -1,0 +1,27 @@
+name: AI Researcher
+
+education:
+  - PhD Computer Science
+
+experience:
+  years: 
+    min: 2
+    max: 4
+
+core_skills:
+  - Python
+  - PyTorch
+  - Transformers
+  - NLP
+  - Deep Learning
+
+optional_skills:
+  - Hugging Face
+  - Reinforcement Learning
+  - RAG
+  - TensorFlow
+  - Research Publications
+
+projects:
+  min: 4
+  max: 7

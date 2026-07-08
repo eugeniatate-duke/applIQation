@@ -1,0 +1,28 @@
+name: Backend Engineer
+
+education:
+  - BS Computer Science
+
+experience:
+  years: 
+    min: 3
+    max: 5
+
+core_skills:
+  - Java
+  - Spring Boot
+  - REST API
+  - SQL
+  - Microservices
+
+optional_skills:
+  - Docker
+  - Kubernetes
+  - AWS
+  - Python
+  - Redis
+  - Kafka
+
+projects:
+  min: 3
+  max: 5
