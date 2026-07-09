@@ -10,6 +10,18 @@ with open(
 
     CAREER_MAP = yaml.safe_load(f)
 
+JOB_FILES = {
+    "AI Engineer": "ai_engineer.yaml",
+    "AI Researcher": "ai_researcher.yaml",
+    "Backend Engineer": "backend_engineer.yaml",
+    "Cloud Engineer": "cloud_engineer.yaml",
+    "Data Engineer": "data_engineer.yaml",
+    "Data Scientist": "data_scientist.yaml",
+    "Junior Software Engineer": "junior_swe.yaml",
+    "Machine Learning Engineer": "ml_engineer.yaml",
+    "MLOps Engineer": "mlops_engineer.yaml",
+    "Senior Software Engineer": "senior_swe.yaml",
+}
 
 def choose_job(role):
     """
