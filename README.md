@@ -1,263 +1,287 @@
 
 # ApplIQation - Know Before You Apply
 
+https://appliqation.vercel.app/ 
+
 ### AI-Powered Job Readiness Assessment
 
-ApplIQation helps job seekers determine whether they are truly ready for a target role by comparing resume evidence against job requirements, identifying competency gaps, and generating assessment questions that validate preparedness.
+ApplIQation is an end-to-end NLP application that evaluates how well a candidate's resume aligns with a target job description. The system combines transformer-based semantic understanding with explicit skill matching to estimate career readiness, identify technical gaps, and generate personalized learning recommendations.
 
-This project was developed for AIPI 540 **Mini Hackathon #2: Can Machines Understand Us Reliably?** in Duke University's AI program.
+The project demonstrates the complete lifecycle of an applied NLP system, including synthetic data generation, classical and deep learning model development, evaluation, deployment, and a production-style web application built with React and FastAPI.
+
+Developed for **AIPI 540 – Deep Learning Applications** at Duke University.
 
 ---
 
 ## Problem Statement
 
-Organizations increasingly rely on NLP systems to interpret language and support decision-making. In career guidance and hiring, subtle misinterpretations can have meaningful downstream consequences:
+Resume screening remains one of the most time-consuming stages of the hiring process. Traditional Applicant Tracking Systems (ATS) frequently rely on keyword matching, making them sensitive to differences in wording and unable to recognize semantically equivalent skills or experiences.
 
-- Qualified candidates may be incorrectly screened out
-- Candidates may underestimate their readiness for a role
-- Keyword-based systems may fail when terminology changes
-- AI systems may misinterpret skills, experience, and competencies
+Job seekers face a similar challenge. Many applicants struggle to determine whether they are genuinely prepared for a role or whether they should first strengthen specific technical competencies.
 
-This project investigates how reliably NLP systems can assess candidate readiness when resumes and job descriptions use different language to describe similar concepts.
+ApplIQation investigates whether transformer-based NLP models can provide more reliable career readiness assessments than traditional keyword-based approaches by jointly analyzing resumes and job descriptions.
 
 ---
 
 ## Solution
 
-ApplIQation evaluates a candidate's readiness for a target role by:
+ApplIQation performs an end-to-end career readiness assessment by:
 
-1. Analyzing resume content
-2. Comparing candidate experience against job requirements
-3. Identifying strengths and competency gaps
-4. Estimating job readiness
-5. Generating assessment questions that validate whether identified gaps are genuine
+1. Parsing uploaded resumes (PDF, DOCX, TXT)
+2. Extracting technical skills from resumes and job descriptions
+3. Performing semantic resume-job analysis using a fine-tuned DistilBERT model
+4. Identifying matched and missing technical skills
+5. Estimating overall career readiness
+6. Generating a personalized learning roadmap
 
-The goal is not only to identify missing skills, but also to determine whether a candidate could realistically succeed in the role with minimal onboarding or additional preparation.
+Rather than relying solely on keyword overlap, the application combines semantic understanding with explicit skill matching to provide transparent and actionable recommendations.
 
 ---
 
 ## System Architecture
 
 ```text
-Resume
-      +
-Job Description
-      ↓
-Skill Extraction
-      ↓
-Gap Analysis
-      ↓
-Readiness Assessment
-      ↓
-Assessment Question Generation
+                React Frontend
+
+                      │
+
+              Resume Upload UI
+
+                      │
+
+                 FastAPI Backend
+
+                      │
+
+        Resume Parsing & Skill Extraction
+
+                      │
+
+      Fine-Tuned DistilBERT Classifier
+
+                      │
+
+        Hybrid Readiness Assessment
+
+     (Semantic + Explicit Skill Matching)
+
+                      │
+
+        Career Readiness Recommendation
+
+             + Learning Roadmap
 ```
 
 ---
 
+## Dataset
+
+A synthetic career readiness dataset was developed specifically for this project.
+
+The pipeline automatically generates:
+
+- Synthetic candidate profiles
+- Realistic resumes
+- Target job descriptions
+- Ground-truth readiness labels
+
+Each synthetic candidate is evaluated against multiple target jobs spanning primary, adjacent, and stretch career paths. This produces resume–job pairs that encourage the model to learn relationships between candidates and specific roles rather than memorizing candidate profiles alone.
+
+Dataset summary:
+
+| Item | Count |
+|------|------:|
+| Candidate archetypes | 10 |
+| Resume–Job pairs | 4,300 |
+| Readiness classes | 3 |
+
+--- 
+
 ## Modeling Approaches
+Three progressively more sophisticated models were implemented.
 
-### Baseline Approach
+### Naive Baseline Approach
 
-Taxonomy-based keyword matching.
+A majority-class classifier establishes a lower-bound performance benchmark.
 
-A manually curated skill taxonomy is used to identify:
+### Classical Machine Learning
 
-- Software Engineering
-- Backend Development
-- Machine Learning
-- Deep Learning
-- MLOps
-- Cloud
-- Data Engineering
-- NLP
-- Databases
-- DevOps
+A TF-IDF vectorizer converts resume–job pairs into sparse feature vectors.
 
-The baseline computes readiness using skill overlap between the resume and job description.
+These features are classified using Logistic Regression with balanced class weights.
 
-### Advanced NLP Approach
+### Deep Learning
 
-GPT-5-mini via Duke AI Gateway.
+The final production model uses DistilBERT with transfer learning.
 
-The model performs:
+Resume–job pairs are tokenized jointly and fine-tuned for three-way sequence classification:
 
-- Semantic understanding of resume content
-- Job readiness assessment
-- Competency gap detection
-- Assessment question generation
+- Ready
 
-Rather than relying solely on keywords, the model can recognize conceptually similar terminology and infer missing competencies from context.
+- Ready with Short Ramp-Up
 
----
+- Requires Significant Preparation
 
-## Transfer Learning
-
-The project uses a pretrained large language model (GPT-5-mini) and adapts it to the career-readiness domain through prompt-based transfer learning.
-
-The model was not retrained; instead, carefully designed prompts were used to guide assessment, gap identification, and question generation.
-
----
-
-## Data Augmentation
-
-To evaluate robustness, terminology variations were introduced into job descriptions.
-
-| Original | Variant |
-|-----------|-----------|
-| Docker | Containerization |
-| AWS | Amazon Web Services |
-| Deployment | Productionization |
-| Model Serving | Production Inference |
-
-These variations simulate realistic language differences encountered across companies and job postings.
+The deployed application uses the fine-tuned DistilBERT model together with explicit skill matching to produce interpretable recommendations.
 
 ---
 
 ## Evaluation
 
-### Metric 1: Readiness Score Stability
+Three modeling approaches were evaluated using the same held-out test set.
 
-| Scenario | Baseline | GPT |
-|-----------|-----------|-----------|
-| Original | 50 | 70 |
-| Variant 1 | 0 | 75 |
-| Variant 2 | 0 | 80 |
+Evaluation metrics included:
 
-#### Observation
+- Accuracy
+- Precision
+- Recall
+- Macro F1 Score
+- Confusion Matrix
 
-Keyword-based matching was highly sensitive to wording changes.
+### Model Comparison
 
-GPT-based assessment remained substantially more stable.
+| Model | Accuracy | Macro F1 |
+|--------|---------:|---------:|
+| Naive Baseline | 72.0% | 0.348 |
+| Logistic Regression | 66.0% | 0.567 |
+| DistilBERT | **94.5%** | **0.928** |
 
-### Metric 2: Competency Gap Consistency
-
-The system was evaluated on whether it consistently identified similar competency gaps despite terminology changes.
-
-Observed gap categories remained largely stable:
-
-- Production ML
-- MLOps
-- Cloud Infrastructure
-- Python Development
-- Deep Learning Framework Experience
-
-This suggests stronger semantic understanding than simple keyword matching.
+The transformer-based model substantially outperformed both the baseline and the classical machine learning approach, demonstrating the benefits of contextual language understanding for resume–job matching.
 
 ---
 
 ## Example Output
 
 ```text
-Readiness Score: 70%
+Career Readiness Assessment
+Ready with Short Ramp-Up
+AI Confidence: 95.1%
 
-Recommendation:
-Ready With Short Ramp-Up
+Matched Skills
 
-Strengths:
-✓ Strong Python and PyTorch background
-✓ Graduate-level AI education
-✓ Practical deep learning experience
+✓ Python
+✓ Docker
+✓ Machine Learning
+✓ FastAPI
 
-Competency Gaps:
-• Cloud deployment experience
-• MLOps tooling
-• Production model monitoring
+Missing Skills
+• AWS
+• Kubernetes
+
+Personalized Learning Roadmap
+
+• Gain hands-on AWS experience
+• Learn Kubernetes fundamentals
+• Build one cloud-deployed ML application
 ```
 
 ---
 
 ## Technologies Used
 
-- Python
-- Streamlit
-- OpenAI SDK
-- Duke AI Gateway
-- GPT-5-mini
-- JSON-based Skill Taxonomy
+### Frontend
+- React
+- Vite
+
+### Backend
+- FastAPI
+- Uvicorn
+
+### NLP & Machine Learning
+- DistilBERT
+- Transformers
+- PyTorch
+- Scikit-learn
+- Hugging Face Datasets
+
+### Data Processing
+- Pandas
+- NumPy
+- PDFPlumber
+- python-docx
+
+### Deployment
+- Vercel (Frontend)
+- FastAPI API
 
 ---
 
 ## Repository Structure
 
 ```bash
-ApplIQation/
+applIQation/
+├── backend/
+│   ├── routers/
+│   └── services/
 │
-├── app.py
-├── requirements.txt
-├── README.md
-│
-├── data/
-│   ├── skills.json
-│   ├── resumes/
-│   ├── job_descriptions/
-│   └── evaluation/
+├── frontend/
+│   ├── src/
+│   └── public/
 │
 ├── src/
-│   ├── extract_skills.py
-│   ├── gap_analysis.py
-│   ├── readiness.py
-│   ├── llm_assessor.py
-│   └── evaluate_robustness.py
+│   ├── data_generation/
+│   ├── classical/
+│   ├── deep_learning/
+│   ├── evaluation/
+│   └── deployment/
 │
-└── outputs/
+├── models/
+│
+├── data/
+│
+├── outputs/
+│
+└── README.md
 ```
 
 ---
 
-## Setup and Configuration
-Clone the repository:
+## Installation
 
 ```bash
 git clone https://github.com/eugeniatate/applIQation.git
 cd applIQation
-```
-
-Install dependencies:
-
-```bash
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the project root if you are running locally:
+### Backend
 
 ```bash
-LITELLM_TOKEN=your_duke_ai_gateway_token
-```
-The application uses Duke AI Gateway and GPT-5-mini for candidate assessment.
-
-Launch the Streamlit app:
-
-```bash
-streamlit run app.py
+cd backend
+uvicorn main:app --reload
 ```
 
-The application will open in your browser at:
-
-```bash
-http://localhost:8501
+Backend:
+```
+http://127.0.0.1:8000
 ```
 
-To reproduce the robustness evaluation:
+### Frontend
 
 ```bash
-python -m src.evaluate_robustness
+cd frontend
+npm install
+npm run dev
 ```
 
-Results will be written to:
+Frontend:
 
-```bash
-outputs/evaluation_results.json
+https://appliqation.vercel.app/ 
+
+or locally:
+```
+http://localhost:5173
 ```
 
 ## Future Work
 
-- PDF and DOCX resume parsing
-- Career roadmap generation
-- Capability graph construction
-- Market-aware skill recommendations
-- Multi-role career planning
-- Classical ML vs Transformer vs LLM comparisons
-- Enhanced UI, visual analytics and explainability
+- LLM-generated career coaching and interview preparation
+- Capability graph construction for personalized learning paths
+- Market-aware skill recommendations using real job postings
+- Multi-role career planning and recommendation engine
+- Integration with vector databases for semantic resume search
+- Expanded evaluation using public resume-job datasets
+- Enhanced visual analytics and explainability dashboards
 
 ---
 
