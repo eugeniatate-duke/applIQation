@@ -57,8 +57,7 @@ results/
 # models/
 # *.pkl
 # *.joblib
-models/distilbert/model.safetensors
-models/distilbert/training_args.bin
+
 
 
 # Training outputs
