@@ -1,50 +1,10 @@
 from fastapi import APIRouter, UploadFile, File, Form
-from services.skills import extract_skills
 
 from services.parser import extract_resume_text
+from services.skills import extract_skills
 from src.deep_learning.inference import predict
 
 router = APIRouter()
-
-# ROADMAP = {
-#     "Ready": [
-#         "Continue applying to similar roles.",
-#         "Practice technical and behavioral interviews.",
-#         "Continue building your AI portfolio.",
-#     ],
-#     "Ready with Short Ramp-Up": [
-#         "Learn Docker fundamentals.",
-#         "Build one FastAPI project.",
-#         "Deploy an ML application.",
-#     ],
-#     "Requires Significant Preparation": [
-#         "Strengthen Python programming.",
-#         "Complete an end-to-end ML project.",
-#         "Learn Docker and FastAPI.",
-#         "Practice SQL fundamentals.",
-#     ],
-# }
-
-
-RECOMMENDED_SKILLS = {
-    "Ready": [
-        "LLMOps",
-        "System Design",
-        "Kubernetes",
-    ],
-    "Ready with Short Ramp-Up": [
-        "Docker",
-        "FastAPI",
-        "AWS",
-    ],
-    "Requires Significant Preparation": [
-        "Python",
-        "Docker",
-        "FastAPI",
-        "SQL",
-        "AWS",
-    ],
-}
 
 
 @router.post("/predict")
@@ -52,45 +12,67 @@ async def predict_resume(
     resume: UploadFile = File(...),
     job_description: str = Form(...),
 ):
+    # --------------------------------------------------
+    # Extract resume text
+    # --------------------------------------------------
+
     resume_text = extract_resume_text(resume)
 
-    resume_skills = extract_skills(resume_text)
+    # --------------------------------------------------
+    # Skill matching
+    # --------------------------------------------------
 
+    resume_skills = extract_skills(resume_text)
     job_skills = extract_skills(job_description)
 
-    matched_skills = [
+    matched_skills = [skill for skill in job_skills if skill in resume_skills]
 
-        skill
+    missing_skills = [skill for skill in job_skills if skill not in resume_skills]
 
-        for skill in job_skills
+    if len(job_skills) == 0:
+        skill_match = 1.0
+    else:
+        skill_match = len(matched_skills) / len(job_skills)
 
-        if skill in resume_skills
+    # --------------------------------------------------
+    # DistilBERT prediction
+    # --------------------------------------------------
 
-    ]
+    result = predict(
+        resume_text,
+        job_description,
+    )
 
-    missing_skills = [
+    # --------------------------------------------------
+    # Hybrid readiness decision
+    # --------------------------------------------------
 
-        skill
+    if skill_match == 1.0:
+        label = "Ready"
 
-        for skill in job_skills
+    elif skill_match >= 0.70:
+        label = "Ready with Short Ramp-Up"
 
-        if skill not in resume_skills
+    else:
+        label = result["label"]
 
-    ]
+    # --------------------------------------------------
+    # Personalized learning roadmap
+    # --------------------------------------------------
 
     roadmap = []
 
     if "Docker" in missing_skills:
-        roadmap.append("Learn Docker fundamentals.")
+        roadmap.append("Learn Docker fundamentals and containerize one project.")
 
     if "AWS" in missing_skills:
-        roadmap.append("Gain experience with AWS cloud services.")
+        roadmap.append("Gain hands-on AWS cloud experience.")
 
     if "FastAPI" in missing_skills:
         roadmap.append("Build and deploy a FastAPI application.")
 
     if "SQL" in missing_skills:
-        roadmap.append("Practice SQL through data engineering projects.")
+        roadmap.append("Practice SQL through realistic data engineering projects.")
 
     if "Machine Learning" in missing_skills:
         roadmap.append("Complete an end-to-end machine learning project.")
@@ -98,27 +80,24 @@ async def predict_resume(
     if "Transformers" in missing_skills:
         roadmap.append("Fine-tune a transformer model on a custom dataset.")
 
-
     if not roadmap:
+        roadmap = [
+            "Your resume demonstrates strong technical alignment with the job description.",
+            "Continue preparing for technical interviews.",
+            "Keep building production-quality AI projects.",
+        ]
 
-      roadmap.append(
-
-          "Continue building production AI projects and applying for similar roles."
-
-      )
-
-    result = predict(
-        resume_text,
-        job_description,
-    )
-
-    label = result["label"]
+    # --------------------------------------------------
+    # Response
+    # --------------------------------------------------
 
     return {
         "label": label,
         "confidence": result["confidence"],
-        # "recommended_skills": RECOMMENDED_SKILLS[label],
+        "skill_match": round(skill_match * 100, 1),
         "matched_skills": matched_skills,
         "missing_skills": missing_skills,
-        "roadmap": roadmap
+        "matched_count": len(matched_skills),
+        "required_count": len(job_skills),
+        "roadmap": roadmap,
     }

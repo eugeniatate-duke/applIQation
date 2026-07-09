@@ -3,7 +3,7 @@
   "truncation": {
     "direction": "Right",
     "max_length": 384,
-    "strategy": "LongestFirst",
+    "strategy": "OnlyFirst",
     "stride": 0
   },
   "padding": {
