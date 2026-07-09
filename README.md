@@ -1,7 +1,9 @@
 
 # ApplIQation - Know Before You Apply
 
-https://appliqation.vercel.app/ 
+Vercel App: https://appliqation.vercel.app/ 
+
+Backend API (Google Cloud Run) : https://appliqation-api-428926191821.us-central1.run.app/docs
 
 ### AI-Powered Job Readiness Assessment
 
@@ -41,35 +43,37 @@ Rather than relying solely on keyword overlap, the application combines semantic
 ## System Architecture
 
 ```text
-                React Frontend
 
-                      │
+                Resume
+                   +
 
-              Resume Upload UI
+           Job Description
 
-                      │
+                   │
+                   ▼
 
-                 FastAPI Backend
+        React Frontend (Vercel)
 
-                      │
+                   │
+                   ▼
 
-        Resume Parsing & Skill Extraction
+       FastAPI Backend (Cloud Run)
 
-                      │
+                   │
+        ┌──────────┴──────────┐
+        │                     │
+        ▼                     ▼
 
-      Fine-Tuned DistilBERT Classifier
+Skill Extraction      Fine-tuned DistilBERT
 
-                      │
+        │                     │
+        └──────────┬──────────┘
+                   ▼
 
-        Hybrid Readiness Assessment
+      Career Readiness Assessment
+                   ▼
+       Learning Roadmap & Feedback
 
-     (Semantic + Explicit Skill Matching)
-
-                      │
-
-        Career Readiness Recommendation
-
-             + Learning Roadmap
 ```
 
 ---
@@ -174,6 +178,25 @@ Personalized Learning Roadmap
 • Learn Kubernetes fundamentals
 • Build one cloud-deployed ML application
 ```
+--- 
+
+## Deployment
+
+The application is deployed as a production-style web application.
+
+```text
+React
+(Vercel)
+        │
+        ▼
+FastAPI
+(Google Cloud Run)
+        │
+        ▼
+Fine-tuned DistilBERT
+```
+
+The frontend is hosted on Vercel while the FastAPI backend and DistilBERT model are deployed on Google Cloud Run.
 
 ---
 
@@ -181,11 +204,13 @@ Personalized Learning Roadmap
 
 ### Frontend
 - React
-- Vite
+- Axios
+- Vercel
 
 ### Backend
 - FastAPI
 - Uvicorn
+- Google Cloud Run
 
 ### NLP & Machine Learning
 - DistilBERT
@@ -197,12 +222,8 @@ Personalized Learning Roadmap
 ### Data Processing
 - Pandas
 - NumPy
-- PDFPlumber
+- pdfplumber
 - python-docx
-
-### Deployment
-- Vercel (Frontend)
-- FastAPI API
 
 ---
 
@@ -248,7 +269,7 @@ pip install -r requirements.txt
 
 ```bash
 cd backend
-uvicorn main:app --reload
+uvicorn backend.main:app --reload
 ```
 
 Backend:
@@ -273,6 +294,33 @@ or locally:
 http://localhost:5173
 ```
 
+---- 
+## API
+
+Interactive API documentation is available at
+
+https://appliqation-api-428926191821.us-central1.run.app/docs
+
+Example endpoint
+
+```text
+POST /predict
+```
+
+Inputs
+
+- Resume (PDF, DOCX, TXT)
+- Job Description
+
+Outputs
+
+- Career readiness prediction
+- Confidence score
+- Skill match percentage
+- Missing skills
+- Personalized learning roadmap
+  
+--- 
 ## Future Work
 
 - LLM-generated career coaching and interview preparation
