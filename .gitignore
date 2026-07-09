@@ -57,6 +57,9 @@ results/
 # models/
 # *.pkl
 # *.joblib
+models/distilbert/model.safetensors
+models/distilbert/training_args.bin
+
 
 # Training outputs
 
@@ -68,6 +71,21 @@ wandb/
 # Hugging Face Cache
 .cache/
 hf_cache/
+
+# --------------------------------------------------
+# Hugging Face training checkpoints
+# --------------------------------------------------
+
+models/distilbert/checkpoint-*/
+models/distilbert/runs/
+
+# Trainer artifacts
+
+trainer_state.json
+optimizer.pt
+scheduler.pt
+rng_state.pth
+training_args.bin
 
 # --------------------------------------------------
 # Generated synthetic data
@@ -86,4 +104,4 @@ data/synthetic/job_descriptions/*.txt
 data/processed/*.csv
 
 # Generated evaluation outputs
-data/outputs/*.json
+# data/outputs/*.json
