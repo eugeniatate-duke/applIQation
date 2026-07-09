@@ -35,7 +35,7 @@ def predict(resume_text, job_description):
     inputs = tokenizer(
         resume_text,
         job_description,
-        truncation="only_first",
+        truncation=True,
         padding="max_length",
         max_length=384,
         return_tensors="pt",

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Form
 
-from services.parser import extract_resume_text
-from services.skills import extract_skills
+from backend.services.parser import extract_resume_text
+from backend.services.skills import extract_skills
 from src.deep_learning.inference import predict
 
 router = APIRouter()
