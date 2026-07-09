@@ -30,8 +30,8 @@ def train_logistic(dataset_path, C=1.0, min_df = 2):
     """
 
     # Create train/test split
-    # X_train, X_test, y_train, y_test, train_idx, test_idx = prepare_data(dataset_path)
-    X_train, X_test, y_train, y_test = prepare_data(dataset_path)
+    X_train, X_test, y_train, y_test, train_idx, test_idx = prepare_data(dataset_path)
+    # X_train, X_test, y_train, y_test = prepare_data(dataset_path)
 
     print("\nTraining labels")
     print(y_train.value_counts())
@@ -69,4 +69,11 @@ def train_logistic(dataset_path, C=1.0, min_df = 2):
     joblib.dump(model, MODEL_DIR / "logistic_regression.pkl")
     joblib.dump(vectorizer, MODEL_DIR / "tfidf_vectorizer.pkl")
 
-    return y_test, predictions, model, vectorizer
+    return (
+        y_test,
+        predictions,
+        model,
+        vectorizer,
+        train_idx,
+        test_idx,
+    )
