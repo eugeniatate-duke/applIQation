@@ -6,3 +6,8 @@ scikit-learn
 PyPDF2
 openai
 python-dotenv
+transformers
+datasets
+accelerate
+evaluate
+torch

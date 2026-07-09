@@ -8,11 +8,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
 import joblib
+from pathlib import Path
 
 from src.classical.preprocess import prepare_data
 
+MODEL_DIR = Path("models/logistic")
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
-def train_logistic(dataset_path):
+def train_logistic(dataset_path, C=1.0, min_df = 2):
     """
     Train a Logistic Regression model.
 
@@ -27,7 +30,8 @@ def train_logistic(dataset_path):
     """
 
     # Create train/test split
-    X_train, X_test, y_train, y_test, train_idx, test_idx = prepare_data(dataset_path)
+    # X_train, X_test, y_train, y_test, train_idx, test_idx = prepare_data(dataset_path)
+    X_train, X_test, y_train, y_test = prepare_data(dataset_path)
 
     print("\nTraining labels")
     print(y_train.value_counts())
@@ -39,7 +43,7 @@ def train_logistic(dataset_path):
         stop_words="english",
         max_features=5000,
         ngram_range=(1, 2),
-        min_df=2,
+        min_df=min_df,
     )
 
     X_train = vectorizer.fit_transform(X_train)
@@ -48,8 +52,9 @@ def train_logistic(dataset_path):
 
     # Train Logistic Regression
     model = LogisticRegression(
+        C = C,
         max_iter=1000,
-        # class_weight="balanced",
+        class_weight="balanced",
         random_state=42,
     )
 
@@ -61,7 +66,7 @@ def train_logistic(dataset_path):
     print("\nPredicted labels")
     print(pd.Series(predictions).value_counts())
 
-    joblib.dump(model, "models/logistic/logistic_regression.pkl")
-    joblib.dump(vectorizer, "models/logistic/tfidf_vectorizer.pkl") 
+    joblib.dump(model, MODEL_DIR / "logistic_regression.pkl")
+    joblib.dump(vectorizer, MODEL_DIR / "tfidf_vectorizer.pkl")
 
-    return y_test, predictions, model, vectorizer, train_idx, test_idx
+    return y_test, predictions, model, vectorizer
