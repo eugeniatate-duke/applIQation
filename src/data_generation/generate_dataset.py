@@ -16,6 +16,7 @@ to train the baseline, classical ML, and deep learning models.
 """
 
 import random
+from src.data_generation.job_selection import choose_job, JOB_FILES
 
 from src.data_generation.render_job import (
     render_job,
@@ -55,11 +56,6 @@ from src.data_generation.labeling import (
     calculate_readiness,
 )
 
-from src.data_generation.save_dataset import (
-    save_candidate,
-    save_dataset,
-)
-
 
 def load_yaml_files(directory):
     """
@@ -91,7 +87,7 @@ def load_yaml_files(directory):
 
 
 def generate_dataset(
-    samples_per_profile=10,
+    samples_per_profile=100,
     random_seed=42,
 ):
     """
@@ -107,7 +103,7 @@ def generate_dataset(
     random.seed(random_seed)
     dataset = []
     candidate_profiles = load_yaml_files(PROFILE_DIR)
-    job_profiles = load_yaml_files(JOB_PROFILE_DIR)
+    # job_profiles = load_yaml_files(JOB_PROFILE_DIR)
     example_id = 1
 
     for profile_path in candidate_profiles:
@@ -128,8 +124,8 @@ def generate_dataset(
             # Generate random job
             # -------------------------
 
-            selected_job = random.choice(job_profiles)
-            # selected_title = choose_job(candidate["role"])
+            selected_title = choose_job(candidate["role"])
+            selected_job = JOB_PROFILE_DIR / JOB_FILES[selected_title]
             job_profile = load_job_profile(selected_job)
             job = generate_job(job_profile)
             job_text = render_job(job)
@@ -170,4 +166,4 @@ def generate_dataset(
 
 
 if __name__ == "__main__":
-    generate_dataset(samples_per_profile=10)
+    generate_dataset(samples_per_profile=100)
