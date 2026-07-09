@@ -60,7 +60,11 @@ def compute_metrics(eval_pred):
     }
 
 
-def train_distilbert(dataset_path):
+def train_distilbert(
+    dataset_path,
+    learning_rate=2e-5,
+    epochs=3,
+):
     """
     Fine-tune DistilBERT.
     """
@@ -77,14 +81,14 @@ def train_distilbert(dataset_path):
 
     training_args = TrainingArguments(
         output_dir="models/distilbert",
-        num_train_epochs=3,
+        num_train_epochs=epochs,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
         eval_strategy="epoch",
         save_strategy="epoch",
         logging_strategy="steps",
         logging_steps=20,
-        learning_rate=2e-5,
+        learning_rate=learning_rate,
         weight_decay=0.01,
         load_best_model_at_end=True,
         report_to="none",
