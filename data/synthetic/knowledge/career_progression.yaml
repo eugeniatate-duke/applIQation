@@ -1,1 +1,132 @@
-# TODO 
+Machine Learning Engineer:
+
+  primary_jobs:
+    - Machine Learning Engineer
+    - AI Engineer
+
+  secondary_jobs:
+    - Data Scientist
+    - MLOps Engineer
+
+  stretch_jobs:
+    - AI Researcher
+    - Senior Software Engineer
+
+
+AI Engineer:
+
+  primary_jobs:
+    - AI Engineer
+    - Machine Learning Engineer
+
+  secondary_jobs:
+    - AI Researcher
+    - Data Scientist
+
+  stretch_jobs:
+    - MLOps Engineer
+
+
+Data Scientist:
+
+  primary_jobs:
+    - Data Scientist
+    - Machine Learning Engineer
+
+  secondary_jobs:
+    - AI Engineer
+    - Data Engineer
+
+  stretch_jobs:
+    - AI Researcher
+
+
+Backend Engineer:
+
+  primary_jobs:
+    - Backend Engineer
+    - Junior Software Engineer
+
+  secondary_jobs:
+    - Senior Software Engineer
+    - Cloud Engineer
+
+  stretch_jobs:
+    - MLOps Engineer
+
+
+Junior Software Engineer:
+
+  primary_jobs:
+    - Junior Software Engineer
+    - Backend Engineer
+
+  secondary_jobs:
+    - Data Engineer
+
+  stretch_jobs:
+    - Machine Learning Engineer
+
+
+MLOps Engineer:
+
+  primary_jobs:
+    - MLOps Engineer
+    - Cloud Engineer
+
+  secondary_jobs:
+    - Machine Learning Engineer
+
+  stretch_jobs:
+    - AI Engineer
+
+
+Cloud Engineer:
+
+  primary_jobs:
+    - Cloud Engineer
+    - MLOps Engineer
+
+  secondary_jobs:
+    - Backend Engineer
+
+  stretch_jobs:
+    - Data Engineer
+
+
+Data Engineer:
+
+  primary_jobs:
+    - Data Engineer
+    - Backend Engineer
+
+  secondary_jobs:
+    - Machine Learning Engineer
+
+  stretch_jobs:
+    - Cloud Engineer
+
+
+AI Researcher:
+
+  primary_jobs:
+    - AI Researcher
+
+  secondary_jobs:
+    - AI Engineer
+    - Machine Learning Engineer
+
+  stretch_jobs:
+    - Data Scientist
+
+
+Senior Software Engineer:
+
+  primary_jobs:
+    - Senior Software Engineer
+
+  secondary_jobs:
+    - Backend Engineer
+
+  stretch_jobs:
+    - Cloud Engineer

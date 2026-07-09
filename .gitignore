@@ -51,11 +51,39 @@ dist/
 outputs/
 results/
 
-# Model Artifacts (if created later)
-models/
-*.pkl
-*.joblib
+# Model artifacts
+# NOTE:Trained models may be committed for the course project.
+# Uncomment these lines later if model artifacts become too large.
+# models/
+# *.pkl
+# *.joblib
+
+# Training outputs
+
+runs/
+checkpoints/
+tensorboard/
+wandb/
 
 # Hugging Face Cache
 .cache/
 hf_cache/
+
+# --------------------------------------------------
+# Generated synthetic data
+# --------------------------------------------------
+
+# Generated resumes
+data/synthetic/resumes/*.txt
+
+# Generated candidate JSONs
+data/synthetic/candidates/*.json
+
+# Generated job descriptions
+data/synthetic/job_descriptions/*.txt
+
+# Generated processed datasets
+data/processed/*.csv
+
+# Generated evaluation outputs
+data/outputs/*.json
