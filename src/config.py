@@ -10,3 +10,6 @@ PROCESSED_DIR = DATA_DIR / "processed"
 JOB_DESCRIPTION_DIR = DATA_DIR / "synthetic" / "job_descriptions"
 OUTPUTS_DIR = DATA_DIR / "outputs"
 KNOWLEDGE_DIR = DATA_DIR / "synthetic" / "knowledge"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+MODEL_DIR = PROJECT_ROOT / "models" / "distilbert"
