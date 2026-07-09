@@ -160,17 +160,32 @@ function UploadCard() {
               backgroundColor: "#f9fafb",
             }}
           >
-            <h2>Overall Match</h2>
+            <h2>Career Readiness Assessment</h2>
 
             <h3>{results.label}</h3>
 
             <p>
-              Confidence: <strong>{results.confidence}%</strong>
+              AI Confidence: <strong>{results.confidence}%</strong>
+            </p>
+
+            <p
+              style={{
+                color: "#6b7280",
+
+                marginTop: "10px",
+
+                fontSize: "0.95rem",
+              }}
+            >
+              Prediction based on the fine-tuned DistilBERT model.
             </p>
 
             <hr style={{ margin: "20px 0" }} />
 
-            <h3>✓ Skills Found</h3>
+            <h3>
+              ✓ Skill Match ({results.matched_count}/{results.required_count}
+              )
+            </h3>
 
             <ul>
               {results.matched_skills.length === 0 ? (
@@ -184,11 +199,14 @@ function UploadCard() {
 
             <hr style={{ margin: "20px 0" }} />
 
-            <h3>⚠ Missing Skills</h3>
+            <h3>⚠ Missing Skills ({results.missing_skills.length})</h3>
 
             <ul>
               {results.missing_skills.length === 0 ? (
-                <li>No major gaps detected.</li>
+                <li>
+                  No required technical skills were missing based on keyword
+                  matching.
+                </li>
               ) : (
                 results.missing_skills.map((skill) => (
                   <li key={skill}>{skill}</li>

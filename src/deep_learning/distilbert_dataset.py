@@ -12,7 +12,6 @@ from transformers import AutoTokenizer
 
 from src.config import OUTPUTS_DIR
 
-
 MODEL_NAME = "distilbert-base-uncased"
 
 
@@ -31,12 +30,9 @@ def load_hf_dataset(dataset_path):
 
     df = pd.read_csv(dataset_path)
 
-    df["text"] = (
-        "[RESUME]\n"
-        + df["resume_text"]
-        + "\n\n[JOB]\n"
-        + df["job_text"]
-    )
+    df["resume"] = df["resume_text"]
+
+    df["job"] = df["job_text"]
 
     df["label"] = df["readiness_label"].map(LABEL_MAP)
 
@@ -47,16 +43,12 @@ def load_hf_dataset(dataset_path):
 
         split = json.load(f)
 
-    train_df = df.iloc[
-        split["train_indices"]
-    ].reset_index(drop=True)
+    train_df = df.iloc[split["train_indices"]].reset_index(drop=True)
 
-    test_df = df.iloc[
-        split["test_indices"]
-    ].reset_index(drop=True)
+    test_df = df.iloc[split["test_indices"]].reset_index(drop=True)
 
-    train_df = train_df[["text", "label"]]
-    test_df = test_df[["text", "label"]]    
+    train_df = train_df[["resume", "job", "label"]]
+    test_df = test_df[["resume", "job", "label"]]
 
     return (
         Dataset.from_pandas(train_df),
@@ -69,14 +61,14 @@ def tokenize_dataset(dataset):
     Tokenize a Hugging Face dataset.
     """
 
-    tokenizer = AutoTokenizer.from_pretrained(
-        MODEL_NAME
-    )
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
     def tokenize(batch):
+
         return tokenizer(
-            batch["text"],
-            truncation=True,
+            batch["resume"],
+            batch["job"],
+            truncation="only_first",
             padding="max_length",
             max_length=384,
         )

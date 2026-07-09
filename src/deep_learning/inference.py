@@ -5,14 +5,13 @@ Load the trained DistilBERT model and make predictions.
 """
 
 import torch
-from src.config import MODEL_DIR
 
 from transformers import (
     AutoTokenizer,
     AutoModelForSequenceClassification,
 )
 
-# MODEL_PATH = "models/distilbert"
+from src.config import MODEL_DIR
 
 LABELS = {
     0: "Ready",
@@ -33,12 +32,11 @@ def predict(resume_text, job_description):
     Predict career readiness from resume and job description.
     """
 
-    text = "[RESUME]\n" + resume_text + "\n\n[JOB]\n" + job_description
-
     inputs = tokenizer(
-        text,
-        truncation=True,
-        padding=True,
+        resume_text,
+        job_description,
+        truncation="only_first",
+        padding="max_length",
         max_length=384,
         return_tensors="pt",
     )

@@ -16,7 +16,10 @@ to train the baseline, classical ML, and deep learning models.
 """
 
 import random
-from src.data_generation.job_selection import choose_job, JOB_FILES
+from src.data_generation.job_selection import (
+    CAREER_MAP,
+    JOB_FILES,
+)
 
 from src.data_generation.render_job import (
     render_job,
@@ -120,42 +123,43 @@ def generate_dataset(
             save_resume(resume_text,candidate,RESUME_DIR,)
             save_candidate(candidate,CANDIDATE_DIR,)
 
-            # -------------------------
-            # Generate random job
-            # -------------------------
+            # -------------------------------------------------------
+            # Generate MULTIPLE job pairings for each candidate
+            # -------------------------------------------------------
 
-            selected_title = choose_job(candidate["role"])
-            selected_job = JOB_PROFILE_DIR / JOB_FILES[selected_title]
-            job_profile = load_job_profile(selected_job)
-            job = generate_job(job_profile)
-            job_text = render_job(job)
-            save_job_description(job_text, job, JOB_DESCRIPTION_DIR)
+            career = CAREER_MAP[candidate["role"]]
 
-            # -------------------------
-            # Generate labels
-            # -------------------------
+            job_titles = career["primary_jobs"] + career["secondary_jobs"] + career["stretch_jobs"]
 
-            result = calculate_readiness(candidate,job,)
+            for selected_title in job_titles:
 
-            # -------------------------
-            # Store training example
-            # -------------------------
+                selected_job = JOB_PROFILE_DIR / JOB_FILES[selected_title]
 
-            dataset.append(
-                {
-                    "example_id": example_id,
-                    "candidate_id": candidate["id"],
-                    "role": candidate["role"],
-                    "job_title": job["title"],
-                    "resume_text": resume_text,
-                    "job_text": job_text,
-                    "readiness_score":
-                        result["score"],
-                    "readiness_label":
-                        result["label"]
-                }
-            )
-            example_id += 1
+                job_profile = load_job_profile(selected_job)
+
+                job = generate_job(job_profile)
+
+                job_text = render_job(job)
+
+                result = calculate_readiness(
+                    candidate,
+                    job,
+                )
+
+                dataset.append(
+                    {
+                        "example_id": example_id,
+                        "candidate_id": candidate["id"],
+                        "role": candidate["role"],
+                        "job_title": job["title"],
+                        "resume_text": resume_text,
+                        "job_text": job_text,
+                        "readiness_score": result["score"],
+                        "readiness_label": result["label"],
+                    }
+                )
+
+                example_id += 1
 
     output_file = (PROCESSED_DIR /"career_readiness_dataset.csv")
 

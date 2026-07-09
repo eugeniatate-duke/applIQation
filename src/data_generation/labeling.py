@@ -74,9 +74,7 @@ def calculate_readiness(candidate: Dict, job: Dict):
     experience_score = calculate_experience_score(candidate, job)
     education_score = calculate_education_score(candidate, job)
     readiness_score = (
-        skill_score * 0.60
-        + experience_score * 0.20
-        + education_score * 0.20
+        skill_score * 0.70 + experience_score * 0.20 + education_score * 0.10
     )
 
     if readiness_score >= 80:
