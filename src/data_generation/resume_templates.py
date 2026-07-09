@@ -55,13 +55,44 @@ EXPERIENCE_TEMPLATES = [
 
 PROJECT_TEMPLATES = [
     "Built an end-to-end {project} using {skills}.",
-    "Implemented a {project} leveraging {skills}.",
-    "Designed and evaluated a {project} for real-world applications.",
+    "Implemented {article} {project} leveraging {skills}.",
+    "Designed and evaluated {article} {project} for real-world applications.",
     "Developed a production-ready {project} using {skills}.",
-    "Created a {project} to improve automation and decision making.",
-    "Implemented and tested a {project} as part of a graduate software engineering project.",
+    "Created {article} {project} to improve automation and decision making.",
+    "Implemented and tested {article} {project} as part of a graduate software engineering project.",
     "Built a scalable {project} with emphasis on software quality and maintainability."
 ]
+
+# --------------------------------------------------------------------
+# Certification and publications sections for resume
+# --------------------------------------------------------------------
+
+
+CERTIFICATIONS = {
+    "Cloud Engineer": [
+        "AWS Certified Cloud Practitioner",
+        "HashiCorp Terraform Associate"
+    ],
+
+    "MLOps Engineer": [
+        "AWS Certified Cloud Practitioner",
+        "Docker Foundations",
+        "Kubernetes Fundamentals"
+    ],
+
+    "Data Engineer": [
+        "Databricks Fundamentals",
+        "AWS Certified Cloud Practitioner"
+    ]
+}
+
+PUBLICATIONS = {
+    "AI Researcher": [
+        "Smith et al. Deep Learning for Medical Imaging (2024)",
+        "Lee et al. Transformer Models for Scientific NLP (2023)",
+        "Johnson et al. Large Language Models in Healthcare (2024)"
+    ]
+}
 
 # --------------------------------------------------------------------
 # Example project names
@@ -218,4 +249,62 @@ LAST_NAMES = [
     "Martin",
     "Clark",
     "Walker"
+]
+
+# --------------------------------------------------------------------
+# Additional Job Description sections
+# --------------------------------------------------------------------
+
+JOB_SUMMARY_TEMPLATES = [
+    "We are seeking a motivated {title} to join our growing engineering team.",
+    "The successful candidate will build scalable software and AI solutions.",
+    "This role requires collaboration across engineering, product, and data science teams."
+]
+
+RESPONSIBILITY_TEMPLATES = [
+    "Design, develop, and maintain production software systems.",
+    "Collaborate with cross-functional teams to deliver new features.",
+    "Build scalable data pipelines and backend services.",
+    "Develop machine learning solutions for real-world applications.",
+    "Write clean, maintainable, and well-tested code.",
+    "Participate in code reviews and Agile development."
+]
+
+QUALIFICATION_TEMPLATES = [
+    "Bachelor's or Master's degree in Computer Science or related field.",
+    "Experience with {skills}.",
+    "Strong communication and problem-solving skills.",
+    "Experience working within Agile software development teams."
+]
+
+# --------------------------------------------------------------------
+# Job description templates
+# --------------------------------------------------------------------
+
+JOB_SUMMARY_TEMPLATES = [
+    "We are seeking a talented {title} to join our growing engineering team.",
+    "Join our AI organization as a {title} and help build innovative software solutions.",
+    "We are looking for an experienced {title} to develop scalable, production-ready systems.",
+    "Our team is searching for a motivated {title} passionate about solving real-world problems."
+]
+
+RESPONSIBILITY_TEMPLATES = [
+    "Design and develop scalable software solutions.",
+    "Build and maintain production-ready applications.",
+    "Collaborate with cross-functional engineering teams.",
+    "Write clean, maintainable, and well-tested code.",
+    "Develop machine learning models and AI-powered applications.",
+    "Participate in code reviews and Agile development.",
+    "Deploy applications to cloud infrastructure.",
+    "Monitor production systems and improve reliability.",
+    "Optimize model performance and system scalability.",
+    "Work closely with product managers and stakeholders."
+]
+
+QUALIFICATION_TEMPLATES = [
+    "Bachelor's or Master's degree in Computer Science or a related field.",
+    "Strong problem-solving and communication skills.",
+    "Experience working in Agile software development environments.",
+    "Experience with {skills}.",
+    "Ability to work collaboratively within cross-functional teams."
 ]
