@@ -5,6 +5,11 @@ import Button from "./Button";
 function UploadCard() {
   const [resume, setResume] = useState(null);
   const [jobDescription, setJobDescription] = useState("");
+  const [results, setResults] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState("");
 
   return (
     <div
@@ -109,16 +114,99 @@ function UploadCard() {
               return;
             }
 
+            setLoading(true);
+            setError("");
+
             try {
               const result = await analyzeResume(resume, jobDescription);
 
-              console.log(result);
-            } catch (error) {
-              console.error(error);
-              alert("Backend connection failed.");
+              setResults(result);
+            } catch (err) {
+              setError("Unable to analyze resume.");
+            } finally {
+              setLoading(false);
             }
           }}
         />
+        {loading && (
+          <p
+            style={{
+              marginTop: "20px",
+              color: "#2563eb",
+            }}
+          >
+            Analyzing resume...
+          </p>
+        )}
+
+        {error && (
+          <p
+            style={{
+              marginTop: "20px",
+              color: "red",
+            }}
+          >
+            {error}
+          </p>
+        )}
+
+        {results && (
+          <div
+            style={{
+              marginTop: "40px",
+              padding: "25px",
+              border: "1px solid #e5e7eb",
+              borderRadius: "16px",
+              backgroundColor: "#f9fafb",
+            }}
+          >
+            <h2>Overall Match</h2>
+
+            <h3>{results.label}</h3>
+
+            <p>
+              Confidence: <strong>{results.confidence}%</strong>
+            </p>
+
+            <hr style={{ margin: "20px 0" }} />
+
+            <h3>✓ Skills Found</h3>
+
+            <ul>
+              {results.matched_skills.length === 0 ? (
+                <li>No direct matches found.</li>
+              ) : (
+                results.matched_skills.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))
+              )}
+            </ul>
+
+            <hr style={{ margin: "20px 0" }} />
+
+            <h3>⚠ Missing Skills</h3>
+
+            <ul>
+              {results.missing_skills.length === 0 ? (
+                <li>No major gaps detected.</li>
+              ) : (
+                results.missing_skills.map((skill) => (
+                  <li key={skill}>{skill}</li>
+                ))
+              )}
+            </ul>
+
+            <hr style={{ margin: "20px 0" }} />
+
+            <h3>📚 Learning Roadmap</h3>
+
+            <ul>
+              {results.roadmap.map((step) => (
+                <li key={step}>{step}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
