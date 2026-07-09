@@ -91,7 +91,7 @@ def load_yaml_files(directory):
 
 
 def generate_dataset(
-    samples_per_profile=5,
+    samples_per_profile=10,
     random_seed=42,
 ):
     """
@@ -170,4 +170,4 @@ def generate_dataset(
 
 
 if __name__ == "__main__":
-    generate_dataset(samples_per_profile=5)
+    generate_dataset(samples_per_profile=10)
