@@ -1,4 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form
+from src.recommender.resource_recommender import recommend_resources
 
 from backend.services.parser import extract_resume_text
 from backend.services.skills import extract_skills
@@ -86,6 +87,14 @@ async def predict_resume(
             "Continue preparing for technical interviews.",
             "Keep building production-quality AI projects.",
         ]
+    # -------------------------------------------
+    # Recommended Resources
+    # -------------------------------------------
+    recommended_resources = recommend_resources(
+        missing_skills=missing_skills,
+        job_description=job_description,
+        top_k=5,
+    )
 
     # --------------------------------------------------
     # Response
@@ -100,4 +109,5 @@ async def predict_resume(
         "matched_count": len(matched_skills),
         "required_count": len(job_skills),
         "roadmap": roadmap,
+        "recommended_resources": recommended_resources,
     }
