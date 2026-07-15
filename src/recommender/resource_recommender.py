@@ -77,14 +77,30 @@ def recommend_resources(
         resource_vectors,
     ).flatten()
 
-    missing_skill_set = set(missing_skills)
+    # missing_skill_set = set(missing_skills)
+
+    # for i, resource in enumerate(resources):
+    #     resource_skills = set(resource["skills"])
+    #     overlap = missing_skill_set.intersection(resource_skills)
+
+    #     skill_boost = 0.08 * len(overlap)
+    #     similarities[i] += skill_boost
+
+    missing_skill_set = {skill.lower() for skill in missing_skills}
 
     for i, resource in enumerate(resources):
-        resource_skills = set(resource["skills"])
+        resource_skills = {skill.lower() for skill in resource["skills"]}
         overlap = missing_skill_set.intersection(resource_skills)
 
-        skill_boost = 0.08 * len(overlap)
-        similarities[i] += skill_boost
+        # 1. Direct skill coverage
+        coverage_score = len(overlap)
+        # 2. Resource popularity
+        popularity_score = resource.get("popularity", 0.5)
+
+        # Final weighted score
+        similarities[i] = (
+            0.25 * similarities[i] + 0.60 * coverage_score + 0.15 * popularity_score
+        )
 
     ranked_indices = np.argsort(similarities)[::-1]
 
@@ -115,16 +131,37 @@ def recommend_resources(
         ]
 
         if matched_skills:
-            reason = (
-                "Recommended because it directly addresses: "
-                + ", ".join(matched_skills)
-                + "."
-            )
+
+            if len(matched_skills) == 1:
+                reason = (
+                    f"{matched_skills[0]} appears in the target job description "
+                    f"but is not sufficiently demonstrated in your resume. "
+                    f"This resource directly helps strengthen that skill."
+                )
+
+            else:
+                reason = (
+                    "This resource simultaneously strengthens "
+                    + ", ".join(matched_skills[:-1])
+                    + f" and {matched_skills[-1]}, making it one of the highest-impact "
+                      "recommendations for improving your readiness."
+                )
+
         else:
+
             reason = (
-                "Recommended because it is semantically related to the target role "
-                "and supports broader career preparation."
+                "Although this resource does not target a single missing skill directly, "
+                "it develops complementary knowledge that supports long-term career growth."
             )
+
+        if coverage_score >= 2:
+            priority = "High"
+
+        elif coverage_score == 1:
+            priority = "Medium"
+
+        else:
+            priority = "Exploration"
 
         recommendation = {
             "id": resource["id"],
@@ -138,6 +175,7 @@ def recommend_resources(
             "duration_hours": resource["duration_hours"],
             "score": round(score, 3),
             "reason": reason,
+            "priority": priority,
         }
 
         recommendations.append(recommendation)
