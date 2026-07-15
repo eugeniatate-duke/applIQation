@@ -121,6 +121,11 @@ function UploadCard() {
               const result = await analyzeResume(resume, jobDescription);
 
               setResults(result);
+              setTimeout(() => {
+                document
+                  .getElementById("results-section")
+                  ?.scrollIntoView({ behavior: "smooth" });
+              }, 100);
             } catch (err) {
               setError("Unable to analyze resume.");
             } finally {
@@ -152,6 +157,7 @@ function UploadCard() {
 
         {results && (
           <div
+            id="results-section"
             style={{
               marginTop: "40px",
               padding: "25px",
