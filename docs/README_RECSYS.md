@@ -10,6 +10,16 @@ ApplIQation extends the NLP career readiness assessment into a **content-based r
 
 Rather than optimizing for clicks or engagement, the system recommends educational resources that maximize **career readiness**, helping candidates focus on the highest-impact skills needed for technical AI and software engineering roles.
 
+### Recommendation Scope
+
+The recommendation engine is designed to complement—not replace—the overall career readiness assessment.
+
+A candidate may be classified as **Ready** while still receiving personalized learning recommendations. This reflects real-world hiring practices, where successful applicants rarely satisfy every listed qualification but may still benefit from strengthening specific technical competencies.
+
+Similarly, recommendations may extend beyond explicitly missing keywords. For example, a resume that demonstrates general machine learning experience may still receive recommendations related to **fine-tuning**, **model evaluation**, or **ML system design** when those advanced competencies are important for the target role. The recommendation engine therefore prioritizes career development and long-term readiness rather than exact keyword completion.
+
+Career readiness and personalized recommendations intentionally serve different purposes: the readiness assessment estimates current suitability for a target technical role, while the recommendation engine identifies opportunities for continued professional growth—even for candidates already considered ready to apply.
+
 Developed for **AIPI 540 – Deep Learning Applications** at Duke University.
 
 ---
