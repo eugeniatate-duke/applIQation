@@ -98,8 +98,9 @@ def recommend_resources(
         popularity_score = resource.get("popularity", 0.5)
 
         # Final weighted score
+        semantic_score = similarities[i]
         similarities[i] = (
-            0.25 * similarities[i] + 0.60 * coverage_score + 0.15 * popularity_score
+            0.25 * semantic_score + 0.60 * coverage_score + 0.15 * popularity_score
         )
 
     ranked_indices = np.argsort(similarities)[::-1]
@@ -110,10 +111,16 @@ def recommend_resources(
 
     for index in ranked_indices:
         resource = resources[index]
+        resource_skills = {skill.lower() for skill in resource["skills"]}
+        overlap = missing_skill_set.intersection(resource_skills)
+        coverage_score = len(overlap)
         score = float(similarities[index])
 
-        if score <= 0:
+        if coverage_score == 0 and score < 0.35:
             continue
+
+        # if score <= 0:
+        #     continue
 
         if diversity:
             already_same_format = resource["format"] in used_formats
@@ -126,32 +133,26 @@ def recommend_resources(
             ):
                 continue
 
-        matched_skills = [
-            skill for skill in resource["skills"] if skill in missing_skills
-        ]
+        matched_skills = sorted(set(resource["skills"]).intersection(missing_skills))
 
-        if matched_skills:
+        if len(matched_skills) == 1:
+            reason = (
+                f"{matched_skills[0]} was identified as one of the primary skill gaps for this position. "
+                f"Completing this resource will help strengthen that competency."
+            )
 
-            if len(matched_skills) == 1:
-                reason = (
-                    f"{matched_skills[0]} appears in the target job description "
-                    f"but is not sufficiently demonstrated in your resume. "
-                    f"This resource directly helps strengthen that skill."
-                )
-
-            else:
-                reason = (
-                    "This resource simultaneously strengthens "
-                    + ", ".join(matched_skills[:-1])
-                    + f" and {matched_skills[-1]}, making it one of the highest-impact "
-                      "recommendations for improving your readiness."
-                )
+        elif len(matched_skills) > 1:
+            reason = (
+                "This resource addresses multiple identified skill gaps including "
+                + ", ".join(matched_skills[:-1])
+                + f" and {matched_skills[-1]}, making it one of the highest-impact "
+                "recommendations for improving your readiness."
+            )
 
         else:
-
             reason = (
-                "Although this resource does not target a single missing skill directly, "
-                "it develops complementary knowledge that supports long-term career growth."
+                "This resource builds complementary engineering skills that strengthen your overall readiness"
+                "for the position and support long-term professional growth."
             )
 
         if coverage_score >= 2:
