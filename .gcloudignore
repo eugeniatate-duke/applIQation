@@ -1,0 +1,16 @@
+.gcloudignore
+.git
+.gitignore
+.vscode
+frontend
+docs
+tests
+node_modules
+__pycache__
+*.pyc
+.env
+
+# DO NOT ignore models
+#!models
+#!models/distilbert
+#!models/distilbert/model.safetensors
