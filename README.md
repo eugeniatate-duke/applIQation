@@ -1,5 +1,21 @@
 # applIQation
 
+Vercel App: https://appliqation.vercel.app/
+
+Backend API (Google Cloud Run): https://appliqation-api-428926191821.us-central1.run.app/docs 
+
+# Repository Organization
+
+This repository contains multiple course projects built on the same application.
+
+**Module 2 – NLP Project** :Transformer-based career readiness assessment using a fine-tuned DistilBERT model. ( `docs/README_NLP.md` )
+
+ **Module 3 – Recommendation Systems** : Content-based learning recommender with explainable recommendations, cold-start support, and responsible recommendation design. (`docs/README_RECSYS.md` )
+
+ **Module 4 – Generative AI** *(coming soon)* : Extension of the platform with LLM-powered career coaching and personalized learning guidance. (`docs/README_GENAI.md` )
+
+---
+
 ## Project Scope
 
 applIQation is designed specifically for **Artificial Intelligence, Machine Learning, Data Science, MLOps, and Software Engineering career paths**.
@@ -17,18 +33,6 @@ A candidate may be classified as **Ready** while still receiving personalized le
 Similarly, recommendations may extend beyond explicitly missing keywords. For example, a resume that demonstrates general machine learning experience may still receive recommendations related to **fine-tuning**, **model evaluation**, or **ML system design** when those advanced competencies are important for the target role. The recommendation engine therefore prioritizes career development and long-term readiness rather than exact keyword completion.
 
 Career readiness and personalized recommendations intentionally serve different purposes: the readiness assessment estimates current suitability for a target technical role, while the recommendation engine identifies opportunities for continued professional growth—even for candidates already considered ready to apply.
-
----
-
-# Repository Organization
-
-This repository contains multiple course projects built on the same application.
-
-**Module 2 – NLP Project** :Transformer-based career readiness assessment using a fine-tuned DistilBERT model. ( `docs/README_NLP.md` )
-
- **Module 3 – Recommendation Systems** : Content-based learning recommender with explainable recommendations, cold-start support, and responsible recommendation design. (`docs/README_RECSYS.md` )
-
- **Module 4 – Generative AI** *(coming soon)* : Extension of the platform with LLM-powered career coaching and personalized learning guidance. (`docs/README_GENAI.md` )
 
 ---
 
