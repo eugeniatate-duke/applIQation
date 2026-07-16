@@ -58,35 +58,27 @@ async def predict_resume(
         label = result["label"]
 
     # --------------------------------------------------
-    # Personalized learning roadmap
+    # Career Development Summary
     # --------------------------------------------------
 
-    roadmap = []
+    career_summary = {
+        "strengths": matched_skills[:5],
+        "priorities": missing_skills[:4],
+    }
 
-    if "Docker" in missing_skills:
-        roadmap.append("Learn Docker fundamentals and containerize one project.")
+    if len(missing_skills) == 0:
+        career_summary["summary"] = (
+            "Your resume demonstrates strong alignment with this position. "
+            "Continue refining production-quality AI projects and preparing "
+            "for technical interviews."
+        )
 
-    if "AWS" in missing_skills:
-        roadmap.append("Gain hands-on AWS cloud experience.")
+    # else:
+    #     career_summary["summary"] = (
+    #         "The recommendations below are prioritized to help close the most "
+    #         "important skill gaps for this role."
+    #     )
 
-    if "FastAPI" in missing_skills:
-        roadmap.append("Build and deploy a FastAPI application.")
-
-    if "SQL" in missing_skills:
-        roadmap.append("Practice SQL through realistic data engineering projects.")
-
-    if "Machine Learning" in missing_skills:
-        roadmap.append("Complete an end-to-end machine learning project.")
-
-    if "Transformers" in missing_skills:
-        roadmap.append("Fine-tune a transformer model on a custom dataset.")
-
-    if not roadmap:
-        roadmap = [
-            "Your resume demonstrates strong technical alignment with the job description.",
-            "Continue preparing for technical interviews.",
-            "Keep building production-quality AI projects.",
-        ]
     # -------------------------------------------
     # Recommended Resources
     # -------------------------------------------
@@ -108,6 +100,6 @@ async def predict_resume(
         "missing_skills": missing_skills,
         "matched_count": len(matched_skills),
         "required_count": len(job_skills),
-        "roadmap": roadmap,
+        "career_summary": career_summary,
         "recommended_resources": recommended_resources,
     }

@@ -1,0 +1,414 @@
+{
+  "Python": {
+    "aliases": ["python"],
+    "category": "Programming"
+  },
+  "R": {
+    "aliases": ["r programming", "language r", "r"],
+    "category": "Programming"
+  },
+  "SQL": {
+    "aliases": ["sql", "postgresql", "mysql", "sqlite"],
+    "category": "Databases"
+  },
+  "Git": {
+    "aliases": ["git", "github", "gitlab"],
+    "category": "Software Engineering"
+  },
+  "Linux": {
+    "aliases": ["linux", "unix"],
+    "category": "Software Engineering"
+  },
+  "Docker": {
+    "aliases": ["docker", "containerization", "containers"],
+    "category": "Cloud & DevOps"
+  },
+  "Kubernetes": {
+    "aliases": ["kubernetes", "k8s"],
+    "category": "Cloud & DevOps"
+  },
+  "AWS": {
+    "aliases": ["aws", "amazon web services", "amazon web service"],
+    "category": "Cloud & DevOps"
+  },
+  "Azure": {
+    "aliases": ["azure", "microsoft azure"],
+    "category": "Cloud & DevOps"
+  },
+  "GCP": {
+    "aliases": ["gcp", "google cloud", "google cloud platform"],
+    "category": "Cloud & DevOps"
+  },
+  "FastAPI": {
+    "aliases": ["fastapi"],
+    "category": "Software Engineering"
+  },
+  "REST APIs": {
+    "aliases": ["rest api", "restful api", "api development"],
+    "category": "Software Engineering"
+  },
+  "PyTorch": {
+    "aliases": ["pytorch"],
+    "category": "Deep Learning"
+  },
+  "TensorFlow": {
+    "aliases": ["tensorflow", "keras"],
+    "category": "Deep Learning"
+  },
+  "Machine Learning": {
+    "aliases": ["machine learning", "ml"],
+    "category": "Artificial Intelligence"
+  },
+  "Deep Learning": {
+    "aliases": ["deep learning", "neural networks"],
+    "category": "Artificial Intelligence"
+  },
+  "Computer Vision": {
+    "aliases": ["computer vision", "vision models"],
+    "category": "Artificial Intelligence"
+  },
+  "Natural Language Processing": {
+    "aliases": ["natural language processing", "nlp"],
+    "category": "Artificial Intelligence"
+  },
+  "Transformers": {
+    "aliases": ["transformers", "transformer models"],
+    "category": "Generative AI"
+  },
+  "Large Language Models": {
+    "aliases": ["large language model", "large language models", "llm", "llms"],
+    "category": "Generative AI"
+  },
+  "Prompt Engineering": {
+    "aliases": ["prompt engineering", "prompt design"],
+    "category": "Generative AI"
+  },
+  "RAG": {
+    "aliases": [
+      "rag",
+      "retrieval augmented generation",
+      "retrieval-augmented generation"
+    ],
+    "category": "Generative AI"
+  },
+  "Agentic AI": {
+    "aliases": ["agentic ai", "ai agents", "autonomous agents"],
+    "category": "Generative AI"
+  },
+  "Model Evaluation": {
+    "aliases": ["model evaluation", "evaluation"],
+    "category": "Artificial Intelligence"
+  },
+  "Fine-tuning": {
+    "aliases": ["fine tuning", "fine-tuning", "finetuning"],
+    "category": "Generative AI"
+  },
+  "MLOps": {
+    "aliases": ["mlops", "machine learning operations"],
+    "category": "MLOps"
+  },
+  "MLflow": {
+    "aliases": ["mlflow"],
+    "category": "MLOps"
+  },
+  "Data Engineering": {
+    "aliases": ["data engineering", "data engineer"],
+    "category": "Data Engineering"
+  },
+  "Data Pipelines": {
+    "aliases": ["data pipeline", "data pipelines", "etl"],
+    "category": "Data Engineering"
+  },
+  "Data Cleaning": {
+    "aliases": ["data cleaning", "data cleansing"],
+    "category": "Data Engineering"
+  },
+  "Data Integration": {
+    "aliases": ["data integration", "integrate datasets"],
+    "category": "Data Engineering"
+  },
+  "Data Visualization": {
+    "aliases": ["data visualization", "visualization"],
+    "category": "Data Science"
+  },
+  "Statistics": {
+    "aliases": ["statistics", "statistical"],
+    "category": "Data Science"
+  },
+  "Mathematics": {
+    "aliases": ["mathematics", "math"],
+    "category": "Data Science"
+  },
+  "Pandas": {
+    "aliases": ["pandas"],
+    "category": "Data Science"
+  },
+  "NumPy": {
+    "aliases": ["numpy"],
+    "category": "Data Science"
+  },
+  "Automation": {
+    "aliases": ["automation", "automated"],
+    "category": "Software Engineering"
+  },
+  "Algorithms": {
+    "aliases": ["algorithm", "algorithms"],
+    "category": "Software Engineering"
+  },
+  "UI/UX": {
+    "aliases": ["ui", "ux", "ui/ux", "user experience", "user interface"],
+    "category": "Software Engineering"
+  },
+  "Exploratory Research": {
+    "aliases": ["exploratory research", "research"],
+    "category": "Artificial Intelligence"
+  },
+  "Semiconductor": {
+    "aliases": ["semiconductor", "memory sector"],
+    "category": "Domain Knowledge"
+  },
+  "Communication": {
+    "aliases": ["communication", "presentation", "written", "verbal"],
+    "category": "Professional"
+  },
+  "Collaboration": {
+    "aliases": ["cross-functional", "collaboration", "teamwork"],
+    "category": "Professional"
+  },
+  "Embeddings": {
+    "aliases": ["embedding", "embeddings", "vector embeddings"],
+    "category": "Generative AI"
+  },
+  "Vector Databases": {
+    "aliases": [
+      "vector database",
+      "vector databases",
+      "pinecone",
+      "weaviate",
+      "chromadb"
+    ],
+    "category": "Generative AI"
+  },
+  "Semantic Search": {
+    "aliases": ["semantic search"],
+    "category": "Generative AI"
+  },
+  "Feature Engineering": {
+    "aliases": ["feature engineering", "feature selection"],
+    "category": "Artificial Intelligence"
+  },
+  "Model Deployment": {
+    "aliases": ["model deployment", "deploy models", "deployment"],
+    "category": "MLOps"
+  },
+  "Monitoring": {
+    "aliases": ["monitoring", "model monitoring"],
+    "category": "MLOps"
+  },
+  "Experiment Tracking": {
+    "aliases": ["experiment tracking"],
+    "category": "MLOps"
+  },
+  "Testing": {
+    "aliases": ["testing", "unit testing", "integration testing"],
+    "category": "Software Engineering"
+  },
+  "Recommendation Systems": {
+    "aliases": ["recommendation systems", "recommender systems"],
+    "category": "Artificial Intelligence"
+  },
+  "Backend Development": {
+    "aliases": ["backend", "backend development"],
+    "category": "Software Engineering"
+  },
+
+  "Frontend Development": {
+    "aliases": ["frontend", "frontend development"],
+    "category": "Software Engineering"
+  },
+  "React": {
+    "aliases": ["react"],
+    "category": "Software Engineering"
+  },
+  
+  "Cloud Infrastructure": {
+    "aliases": [
+      "cloud infrastructure"
+    ],
+    "category": "Cloud & DevOps"
+  },
+
+  "Hugging Face": {
+    "aliases": [
+      "hugging face"
+    ],
+    "category": "Generative AI"
+  },
+  "Streamlit": {
+    "aliases": [
+      "streamlit"
+    ],
+    "category": "Software Engineering"
+  },
+  "ML System Design": {
+    "aliases": [
+      "ml system design",
+      "machine learning system design"
+    ],
+    "category": "MLOps"
+  },
+
+  "Production ML": {
+    "aliases": [
+      "production ml",
+      "production machine learning"
+    ],
+    "category": "MLOps"
+  },
+
+  "Neural Networks": {
+    "aliases": [
+      "neural network",
+      "neural networks"
+    ],
+    "category": "Deep Learning"
+  },
+
+  "Scikit-learn": {
+    "aliases": [
+      "scikit-learn",
+      "sklearn"
+    ],
+    "category": "Artificial Intelligence"
+  },
+
+  "Classification": {
+    "aliases": [
+      "classification"
+    ],
+    "category": "Artificial Intelligence"
+  },
+
+  "Databases": {
+    "aliases": [
+      "database",
+      "databases"
+    ],
+    "category": "Data Engineering"
+  },
+
+  "Data Analysis": {
+    "aliases": [
+      "data analysis",
+      "analytics"
+    ],
+    "category": "Data Science"
+  },
+
+  "CI/CD": {
+    "aliases": [
+      "ci/cd",
+      "continuous integration",
+      "continuous deployment"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "GitHub Actions": {
+    "aliases": [
+      "github actions"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "JavaScript": {
+    "aliases": [
+      "javascript"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "System Design": {
+    "aliases": [
+      "system design"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "Scalability": {
+    "aliases": [
+      "scalability",
+      "scalable systems"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "Data Structures": {
+    "aliases": [
+      "data structures"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "Coding Interviews": {
+    "aliases": [
+      "coding interview",
+      "coding interviews"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "Airflow": {
+    "aliases": [
+      "airflow",
+      "apache airflow"
+    ],
+    "category": "Data Engineering"
+  },
+
+  "Workflow Orchestration": {
+    "aliases": [
+      "workflow orchestration"
+    ],
+    "category": "Data Engineering"
+  },
+
+  "Analytics Engineering": {
+    "aliases": [
+      "analytics engineering"
+    ],
+    "category": "Data Engineering"
+  },
+
+  "Data Drift": {
+    "aliases": [
+      "data drift"
+    ],
+    "category": "MLOps"
+  },
+
+  "Code Quality": {
+    "aliases": [
+      "code quality"
+    ],
+    "category": "Software Engineering"
+  },
+
+  "Cloud Run": {
+    "aliases": [
+      "cloud run",
+      "google cloud run"
+    ],
+    "category": "Cloud & DevOps"
+  },
+
+  "CNNs": {
+    "aliases": [
+      "cnn",
+      "cnns",
+      "convolutional neural network",
+      "convolutional neural networks"
+    ],
+    "category": "Deep Learning"
+  }
+}

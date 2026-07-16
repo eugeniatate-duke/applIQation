@@ -257,27 +257,72 @@ function UploadCard() {
 
             <hr style={{ margin: "20px 0" }} />
 
-            {/* <h3>📚 Learning Roadmap</h3>
+            <h3
+              style={{
+                marginBottom: "24px",
+              }}
+            >
+              Career Development Summary
+            </h3>
 
-            <ul>
-              {results.roadmap.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ul> */}
-            <h3>📚 Learning Roadmap</h3>
+            <p
+              style={{
+                fontSize: "0.95rem",
+                fontWeight: "700",
+                color: "#111827",
+                marginBottom: "8px",
+              }}
+            >
+              Current strengths
+            </p>
 
-            <ul>
-              {results.roadmap.map((step) => (
-                <li key={step}>{step}</li>
-              ))}
-            </ul>
+            <p
+              style={{
+                marginBottom: "18px",
+
+                color: "#374151",
+              }}
+            >
+              {results.career_summary.strengths.join(" • ")}
+            </p>
+
+            <p
+              style={{
+                fontSize: "0.95rem",
+                fontWeight: "700",
+                color: "#111827",
+                marginBottom: "8px",
+              }}
+            >
+              Highest priority gaps
+            </p>
+
+            <p
+              style={{
+                marginBottom: "18px",
+
+                color: "#374151",
+              }}
+            >
+              {results.career_summary.priorities.join(" • ")}
+            </p>
+
+            <p
+              style={{
+                color: "#6b7280",
+
+                lineHeight: "1.8",
+              }}
+            >
+              {results.career_summary.summary}
+            </p>
 
             {results.recommended_resources &&
               results.recommended_resources.length > 0 && (
                 <>
                   <hr style={{ margin: "25px 0" }} />
 
-                  <h3>🎯 Personalized Learning Recommendations</h3>
+                  <h3>Personalized Learning Recommendations</h3>
 
                   <p
                     style={{
