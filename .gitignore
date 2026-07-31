@@ -103,5 +103,8 @@ data/synthetic/job_descriptions/*.txt
 # Generated processed datasets
 data/processed/*.csv
 
+# Keep the GenAI training source dataset
+!data/processed/career_readiness_dataset.csv
+
 # Generated evaluation outputs
 # data/outputs/*.json
