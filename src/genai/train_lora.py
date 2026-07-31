@@ -65,9 +65,6 @@ def build_trainer(
         processing_class=tokenizer,
         formatting_func=format_example,
         args=training_args,
-        dataset_kwargs={
-            "skip_prepare_dataset": False,
-        },
     )
 
     return trainer
@@ -139,8 +136,8 @@ def build_training_arguments():
     return TrainingArguments(
         output_dir=str(OUTPUT_DIR),
         num_train_epochs=2,
-        per_device_train_batch_size=2,
-        gradient_accumulation_steps=4,
+        per_device_train_batch_size=1,
+        gradient_accumulation_steps=8,
         learning_rate=2e-4,
         warmup_ratio=0.05,
         logging_steps=25,
@@ -217,6 +214,12 @@ if __name__ == "__main__":
 
     model = load_model()
 
+    # Reduce GPU memory usage
+    model.config.use_cache = False
+
+    # Save memory during backpropagation
+    model.gradient_checkpointing_enable()
+
     model = attach_lora(model)
 
     print("\nLoRA attached successfully.")
@@ -225,11 +228,24 @@ if __name__ == "__main__":
 
     print("\nPreparing trainer...")
 
+    print("\nColumns:")
+
+    print(dataset.column_names)
+
+    print("\nFirst example:")
+
+    print(dataset[0])
+
     trainer = build_trainer(
         model,
         tokenizer,
         dataset,
     )
+    print("\nTrainer train dataset columns:")
+    print(trainer.train_dataset.column_names)
+
+    print("\nTrainer first example:")
+    print(trainer.train_dataset[0])
 
     print("\nStarting training...\n")
 
