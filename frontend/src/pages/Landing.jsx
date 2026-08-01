@@ -36,7 +36,7 @@ function Landing() {
             letterSpacing: "0.08em",
           }}
         >
-          Powered by DistilBERT • FastAPI • React
+          Powered by DistilBERT • FLAN-T5 • LoRA • FastAPI • React
         </p>
       </div>
     </main>

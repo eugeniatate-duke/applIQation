@@ -1,9 +1,12 @@
-from fastapi import APIRouter, UploadFile, File, Form
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from src.recommender.resource_recommender import recommend_resources
 
 from backend.services.parser import extract_resume_text
 from backend.services.skills import extract_skills
 from src.deep_learning.inference import predict
+from backend.services.career_coach import (
+    generate_interview_report,
+)
 
 router = APIRouter()
 
@@ -12,12 +15,18 @@ router = APIRouter()
 async def predict_resume(
     resume: UploadFile = File(...),
     job_description: str = Form(...),
+
 ):
     # --------------------------------------------------
     # Extract resume text
     # --------------------------------------------------
 
     resume_text = extract_resume_text(resume)
+    if not job_description.strip():
+        raise HTTPException(
+            status_code=400,
+            detail="Please paste a job description before analyzing your resume.",
+        )
 
     # --------------------------------------------------
     # Skill matching
@@ -89,6 +98,17 @@ async def predict_resume(
     )
 
     # --------------------------------------------------
+    # AI Interview Coach
+    # --------------------------------------------------
+
+    interview_report = generate_interview_report(
+        readiness=label,
+        matched_skills=matched_skills,
+        missing_skills=missing_skills,
+        recommended_resources=recommended_resources,
+    )
+
+    # --------------------------------------------------
     # Response
     # --------------------------------------------------
 
@@ -102,4 +122,5 @@ async def predict_resume(
         "required_count": len(job_skills),
         "career_summary": career_summary,
         "recommended_resources": recommended_resources,
+        "interview_report": interview_report,
     }

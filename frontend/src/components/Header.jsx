@@ -37,8 +37,9 @@ function Header() {
           color: "#4b5563",
         }}
       >
-        Compare your resume against any job description using machine learning,
-        NLP, and transformer models before submitting your application.
+        Compare your resume against any job description, identify skill gaps,
+        receive personalized learning recommendations, and generate AI-powered
+        interview preparation using fine-tuned transformer models.
       </p>
       <div
         style={{
@@ -47,7 +48,6 @@ function Header() {
       >
         {/* <Button text="Analyze My Resume" onClick={() => {}} /> */}
       </div>
-
     </header>
   );
 }

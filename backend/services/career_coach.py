@@ -13,7 +13,7 @@ import torch
 from peft import PeftModel
 
 from transformers import (
-    AutoModelForCausalLM,
+    AutoModelForSeq2SeqLM,
     AutoTokenizer,
 )
 
@@ -21,46 +21,45 @@ from transformers import (
 # Configuration
 # -----------------------------------------------------
 
-BASE_MODEL = "Qwen/Qwen2.5-3B-Instruct"
+BASE_MODEL = "google/flan-t5-small"
 
-ADAPTER_DIR = Path("models/career_coach_lora")
+ADAPTER_DIR = Path("models/career_coach_lora_flan")
 
 # -----------------------------------------------------
 # Load tokenizer
 # -----------------------------------------------------
 
 tokenizer = AutoTokenizer.from_pretrained(
-    ADAPTER_DIR,
+    BASE_MODEL,
 )
 
 # -----------------------------------------------------
 # Load base model
 # -----------------------------------------------------
 
-if torch.cuda.is_available():
+# if torch.cuda.is_available():
 
-    DEVICE = "cuda"
+#     DEVICE = "cuda"
 
-    DTYPE = torch.float16
+#     DTYPE = torch.float16
 
-elif torch.backends.mps.is_available():
+# elif torch.backends.mps.is_available():
 
-    DEVICE = "mps"
+#     DEVICE = "mps"
 
-    DTYPE = torch.float32
+#     DTYPE = torch.float32
 
-else:
+# else:
 
-    DEVICE = "cpu"
+#     DEVICE = "cpu"
 
-    DTYPE = torch.float32
+#     DTYPE = torch.float32
 
-base_model = AutoModelForCausalLM.from_pretrained(
+base_model = AutoModelForSeq2SeqLM.from_pretrained(
     BASE_MODEL,
-    dtype=DTYPE,
 )
 
-base_model.to(DEVICE)
+# base_model.to(DEVICE)
 
 # -----------------------------------------------------
 # Load LoRA adapter
@@ -71,10 +70,10 @@ model = PeftModel.from_pretrained(
     ADAPTER_DIR,
 )
 
-model.to(DEVICE)
+# model.to(DEVICE)
 
 model.eval()
-print(f"Career Coach loaded on {DEVICE}")
+# print(f"Career Coach loaded on {DEVICE}")
 
 
 def build_prompt(
@@ -111,7 +110,7 @@ Recommended Resources:
 
 {resources}
 
-### Response
+Generate the interview strategy report.
 """
 
 
@@ -135,34 +134,36 @@ def generate_interview_report(
     inputs = tokenizer(
         prompt,
         return_tensors="pt",
+        truncation=True,
     )
 
-    inputs = {
-        k: v.to(DEVICE)
-        for k, v in inputs.items()
-    }
-
-    outputs = model.generate(
-        **inputs,
-        max_new_tokens=250,
-        temperature=0.6,
-        top_p=0.9,
-        use_cache=True,
-        repetition_penalty=1.1,
-        do_sample=True,
-        eos_token_id=tokenizer.eos_token_id,
-        pad_token_id=tokenizer.eos_token_id,
-    )
-
-    generated_tokens = outputs[0][inputs["input_ids"].shape[1] :]
+    with torch.inference_mode():
+      outputs = model.generate(
+          **inputs,
+          max_new_tokens=250,
+          num_beams=4,
+          no_repeat_ngram_size=3,
+      )
 
     response = tokenizer.decode(
-        generated_tokens,
+        outputs[0],
         skip_special_tokens=True,
     )
 
-    if "### Instruction" in response:
-        response = response.split("### Instruction")[0].strip()
+    response = response.replace(" Overall Assessment", "\n\nOverall Assessment")
+    response = response.replace(" Highest Priority Skills", "\n\nHighest Priority Skills")
+    response = response.replace(" Technical Questions", "\n\nTechnical Questions")
+    response = response.replace(" Behavioral Questions", "\n\nBehavioral Questions")
+    response = response.replace(" Suggested Study Order", "\n\nSuggested Study Order")
+    response = response.replace(" 1. ", "\n\n1. ")
+    response = response.replace(" 2. ", "\n2. ")
+    response = response.replace(" 3. ", "\n3. ")
+    response = response.replace(" 4. ", "\n4. ")
+    response = response.replace(" 5. ", "\n5. ")
+
+    response = response.replace(" - ", "\n- ")
+    # if "### Instruction" in response:
+    #     response = response.split("### Instruction")[0].strip()
 
     return response
 
