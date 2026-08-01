@@ -1,27 +1,24 @@
 # ApplIQation System Architecture
 
-## Overview
+# Overview
 
-ApplIQation is an AI-powered career readiness assessment system that estimates whether a candidate is prepared for a target role.
+ApplIQation is an AI-powered career readiness platform that combines predictive machine learning, recommendation systems, and generative AI to help candidates evaluate their readiness for technical roles and prepare for interviews.
 
-The system consists of two major pipelines:
+The platform consists of three integrated components:
 
-1. Synthetic data generation for model training.
-2. Production inference for end users.
+1. Career Readiness Classification (DistilBERT)
+2. Personalized Learning Recommendation System
+3. AI Interview Coach (FLAN-T5 + LoRA)
 
 ---
 
-## Training Pipeline
+# Training Pipeline
 
-Career Archetype (YAML)
+Synthetic Career Profiles (YAML)
 
 ↓
 
 Candidate Generator
-
-↓
-
-Candidate Object
 
 ↓
 
@@ -33,7 +30,7 @@ Synthetic Resume
 
 +
 
-Job Profile (YAML)
+Synthetic Job Profiles (YAML)
 
 ↓
 
@@ -41,11 +38,7 @@ Job Generator
 
 ↓
 
-Job Renderer
-
-↓
-
-Synthetic Job Description
+Job Description Renderer
 
 ↓
 
@@ -57,41 +50,79 @@ Career Readiness Dataset
 
 ↓
 
-Model Training
+DistilBERT Fine-Tuning
 
-- Naive Baseline
-- TF-IDF + Logistic Regression
-- DistilBERT
+↓
 
+Career Readiness Model
 
-                   TRAINING PIPELINE
++
 
- Career YAML                Job YAML
-      │                        │
-      ▼                        ▼
-Candidate Generator      Job Generator
-      │                        │
-      ▼                        ▼
- Resume Renderer        Job Renderer
-      │                        │
-      └────────────┬────────────┘
-                   ▼
-            Automatic Labeling
-                   ▼
-      Career Readiness Dataset
-                   ▼
-            Model Training
-      (Naive → TF-IDF → DistilBERT)
+Career Readiness Dataset
 
+↓
+
+Skill Extraction
+
+↓
+
+Recommendation Engine
+
+↓
+
+Instruction Dataset Builder
+
+↓
+
+Interview Training Dataset (.jsonl)
+
+↓
+
+FLAN-T5 + LoRA Fine-Tuning
+
+↓
+
+AI Interview Coach Adapter
+
+```
+                 TRAINING PIPELINE
+
+ Candidate YAML                 Job YAML
+       │                           │
+       ▼                           ▼
+ Candidate Generator        Job Generator
+       │                           │
+       ▼                           ▼
+ Resume Renderer          Job Renderer
+       │                           │
+       └──────────────┬────────────┘
+                      ▼
+             Automatic Labeling
+                      ▼
+       Career Readiness Dataset
+                      │
+          ┌───────────┴────────────┐
+          ▼                        ▼
+ DistilBERT Fine-Tuning      Recommendation Pipeline
+          │                        │
+          ▼                        ▼
+ Career Readiness Model   Interview Training Dataset
+                                   │
+                                   ▼
+                        FLAN-T5 + LoRA Fine-Tuning
+                                   │
+                                   ▼
+                          AI Interview Coach
+```
 
 ---
 
-## Production Pipeline
+# Production Pipeline
 
 User uploads:
 
-- Resume (PDF, DOCX or TXT)
-- Job Description
+- Resume (PDF / DOCX / TXT)
+- Target Job Description
 
 ↓
 
@@ -99,25 +130,39 @@ Resume Parser
 
 ↓
 
-Model Inference
+Skill Extraction
 
 ↓
 
-LLM Explanation Layer
+DistilBERT Career Readiness Prediction
 
 ↓
 
-Outputs
+Gap Analysis
 
-- Readiness Score
-- Recommendation
-- Competency Gaps
-- Assessment Questions
-- Learning Roadmap
+↓
 
+Recommendation Engine
 
+↓
 
-                  PRODUCTION PIPELINE
+FLAN-T5 LoRA Interview Coach
+
+↓
+
+Career Readiness Dashboard
+
+Outputs:
+
+- Readiness Prediction
+- Confidence Score
+- Matched Skills
+- Missing Skills
+- Personalized Learning Recommendations
+- AI Interview Preparation Report
+
+```
+                 PRODUCTION PIPELINE
 
  Resume (PDF/DOCX/TXT)
             +
@@ -125,28 +170,47 @@ Outputs
             │
             ▼
       Resume Parser
+            │
             ▼
-     Trained Classifier
+      Skill Extraction
+            │
             ▼
-     GPT Explanation Layer
+ DistilBERT Classifier
+            │
             ▼
-  Readiness Dashboard
+       Gap Analysis
+            │
+            ▼
+ Recommendation Engine
+            │
+            ▼
+ FLAN-T5 + LoRA Interview Coach
+            │
+            ▼
+      Career Readiness Dashboard
+```
 
 ---
 
-## Repository Structure
+# Repository Structure
 
-- Data Generation
-- Model Training
-- Evaluation
+- Synthetic Data Generation
+- Career Readiness Dataset
+- DistilBERT Training
+- Recommendation System
+- FLAN-T5 LoRA Training
+- Model Evaluation
 - Backend API
-- Frontend Application
+- React Frontend
 
 ---
 
-## Future Enhancements
+# Future Enhancements
 
-- Career progression recommendations
-- Capability graph
+- Recruiter-authored interview datasets
+- Real interview transcript fine-tuning
+- Company-specific interview preparation
+- Retrieval-Augmented Generation (RAG)
 - Personalized learning roadmap
-- External market trend integration
+- Labor market trend integration
+- Human feedback evaluation
