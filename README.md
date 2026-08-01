@@ -2,7 +2,9 @@
 
 Vercel App: https://appliqation.vercel.app/
 
-Backend API (Google Cloud Run): https://appliqation-api-428926191821.us-central1.run.app/docs 
+Backend API (Google Cloud Run): https://appliqation-api-428926191821.us-central1.run.app/docs
+
+* AI Assistance was used throughout the entire project 
 
 # Repository Organization
 
