@@ -14,7 +14,7 @@ This repository contains multiple course projects built on the same application.
 
  **Module 3 – Recommendation Systems** : Content-based learning recommender with explainable recommendations, cold-start support, and responsible recommendation design. (`docs/README_RECSYS.md` )
 
- **Module 4 – Generative AI** *(coming soon)* : Extension of the platform with LLM-powered career coaching and personalized learning guidance. (`docs/README_GENAI.md` )
+ **Module 4 – Generative AI** : Extension of the platform with LLM-powered career coaching and personalized learning guidance. (`docs/README_GENAI.md` )
 
 ---
 
