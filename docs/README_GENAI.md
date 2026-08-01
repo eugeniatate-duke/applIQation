@@ -108,22 +108,32 @@ python -m src.genai.train_lora
 
 ---
 
-# Model Adaptation
+# Model Selection and Adaptation
 
-Base Model
+## Base Model
 
 ```text
 google/flan-t5-small
 ```
 
-Adaptation Strategy
+FLAN-T5-small was selected because it is an instruction-tuned encoder-decoder language model that can efficiently follow structured prompts while remaining lightweight enough for practical deployment.
 
-- LoRA
-- PEFT
-- Seq2SeqTrainer
+Compared to an earlier prototype using Qwen2.5-3B, FLAN-T5-small provided a significantly smaller deployment footprint while maintaining the desired interview report generation capability.
+
+## Adaptation Strategy
+
+Rather than fine-tuning all model parameters, the project uses **LoRA (Low-Rank Adaptation)** through the **PEFT** library.
+
+Only lightweight adapter weights are trained while the pretrained FLAN-T5 model remains frozen.
+
+Training was performed using:
+
 - Hugging Face Transformers
+- Seq2SeqTrainer
+- PEFT
+- LoRA
 
-Only the lightweight LoRA adapter weights are trained while the pretrained FLAN-T5 model remains frozen, enabling efficient fine-tuning and lightweight deployment.
+This approach substantially reduces memory requirements, training time, and deployment size while preserving the pretrained language capabilities of FLAN-T5.
 
 ---
 
@@ -176,25 +186,25 @@ The evaluation script prints side-by-side outputs from:
 
 using identical candidate inputs.
 
+The pretrained model produces generic interview advice without following the structured interview-report format expected by the application. After LoRA fine-tuning, the adapted model consistently generates interview preparation reports organized into predefined sections aligned with the application workflow.
+
 ---
 
 # Risks and Limitations
 
-The instruction-following dataset was generated programmatically from the existing recommendation pipeline and originally synthetically generated data rather than recruiter-authored interview reports.
+# Risks and Limitations
 
-As a result, the adapted model successfully learns the desired report structure but may produce repetitive interview questions and relatively generic assessments across different job descriptions.
+The instruction-following dataset was generated programmatically from the existing recommendation pipeline using an underlying synthetic career-readiness dataset rather than recruiter-authored interview reports.
 
-This prototype demonstrates successful model adaptation but should not be considered a production-ready interview coaching system.
+This accelerated development and enabled rapid prototyping, but it also introduced important limitations.
 
-Future work would incorporate:
+Because the interview coaching targets were generated from deterministic templates rather than real interview preparation examples, the adapted model learned the desired report structure but also inherited repetitive interview questions and relatively generic assessments.
 
-- tech recruiter-authored interview preparation examples
-- real interview transcripts
-- human evaluation
-- company-specific interview data
-- Retrieval-Augmented Generation (RAG)
+Furthermore, the qualitative evaluation compares outputs generated from the same synthetic data generation process used during training. Although this demonstrates that the model successfully learned the intended capability, it should not be interpreted as evidence of real-world generalization.
 
-to improve diversity, realism, and personalization.
+A production-quality system would require evaluation using recruiter-authored interview reports, real candidate profiles, human evaluation, and diverse job descriptions from industry.
+
+This prototype demonstrates successful model adaptation, but not production-ready interview coaching.
 
 ---
 
@@ -249,14 +259,16 @@ FLAN-T5 LoRA Interview Coach
 
 # Future Work
 
-Potential improvements include:
+  Future work would incorporate:
 
-- Recruiter-authored interview coaching datasets
-- Real interview transcript fine-tuning
+- tech recruiter-authored interview preparation examples
+- real interview transcripts
 - Role-specific interview question generation
-- Human preference evaluation
-- Company-specific interview preparation using Retrieval-Augmented Generation (RAG)
-- Personalized follow-up interview practice
+- human evaluation
+- company-specific interview data 
+- Retrieval-Augmented Generation (RAG)
+
+to improve diversity, realism, and personalization.
 
 ---
 
