@@ -147,7 +147,7 @@ FLAN-T5 + LORA
 INTERVIEW STRATEGY REPORT Overall Assessment Your profile already aligns well with the target role. Focus on strengthening production engineering skills and preparing for technical interviews. Highest Priority Skills - FastAPI - Kubernetes - MLflow Technical Questions - Explain your experience with fastAPI and how it would be used in production ML systems. - Tell me about a production issue you solved. Suggested Study Order
 ```
 
-![FLAN Eval](data/flan_eval.png)
+![FLAN Eval](/data/flan_eval.png)
 **Figure 1.** Qualitative evaluation comparing the pretrained FLAN-T5-small model with the LoRA-adapted Interview Coach. The adapted model consistently produces a structured interview preparation report aligned with the desired output format, whereas the pretrained model generates generic interview advice.
 
 Evaluation can be reproduced using:
