@@ -11,25 +11,30 @@ ApplIQation pipeline.
 """
 
 from pathlib import Path
-from transformers import AutoModelForCausalLM
 from datasets import load_dataset
-from transformers import TrainingArguments
-from trl import SFTTrainer
-from transformers import AutoTokenizer
+from transformers import (
+    AutoTokenizer,
+    AutoModelForSeq2SeqLM,
+    DataCollatorForSeq2Seq,
+    Seq2SeqTrainer,
+    Seq2SeqTrainingArguments,
+)
+
 from peft import (
     LoraConfig,
     get_peft_model,
+    TaskType,
 )
 
 # -----------------------------------------------------
 # Configuration
 # -----------------------------------------------------
 
-MODEL_NAME = "Qwen/Qwen2.5-3B-Instruct"
+MODEL_NAME = "google/flan-t5-small"
 
 DATASET_PATH = "data/genai/interview_training.jsonl"
 
-OUTPUT_DIR = Path("/content/drive/MyDrive/appliqation/models/career_coach_lora")
+OUTPUT_DIR = Path("/content/drive/MyDrive/appliqation/models/career_coach_lora_flan")
 
 
 def load_training_dataset():
@@ -52,19 +57,28 @@ def build_trainer(
     dataset,
 ):
     """
-
-    Create supervised fine-tuning trainer.
-
+    Create Seq2Seq trainer.
     """
+
+    dataset = dataset.map(
+        tokenize,
+        batched=True,
+        remove_columns=dataset.column_names,
+    )
+
+    data_collator = DataCollatorForSeq2Seq(
+        tokenizer=tokenizer,
+        model=model,
+    )
 
     training_args = build_training_arguments()
 
-    trainer = SFTTrainer(
+    trainer = Seq2SeqTrainer(
         model=model,
-        train_dataset=dataset,
-        processing_class=tokenizer,
-        formatting_func=format_example,
         args=training_args,
+        train_dataset=dataset,
+        data_collator=data_collator,
+        processing_class=tokenizer,
     )
 
     return trainer
@@ -90,10 +104,8 @@ def load_model():
     Load the base instruction model.
     """
 
-    model = AutoModelForCausalLM.from_pretrained(
+    model = AutoModelForSeq2SeqLM.from_pretrained(
         MODEL_NAME,
-        torch_dtype="auto",
-        device_map="auto",
     )
 
     return model
@@ -109,12 +121,10 @@ def attach_lora(model):
         lora_alpha=32,
         lora_dropout=0.05,
         bias="none",
-        task_type="CAUSAL_LM",
+        task_type=TaskType.SEQ_2_SEQ_LM,
         target_modules=[
-            "q_proj",
-            "k_proj",
-            "v_proj",
-            "o_proj",
+            "q",
+            "v",
         ],
     )
 
@@ -129,22 +139,20 @@ def attach_lora(model):
 
 
 def build_training_arguments():
-    """
-    Configure supervised fine-tuning.
-    """
 
-    return TrainingArguments(
+    return Seq2SeqTrainingArguments(
         output_dir=str(OUTPUT_DIR),
-        num_train_epochs=2,
-        per_device_train_batch_size=1,
-        gradient_accumulation_steps=8,
         learning_rate=2e-4,
-        warmup_ratio=0.05,
+        per_device_train_batch_size=8,
+        per_device_eval_batch_size=8,
+        num_train_epochs=2,
         logging_steps=25,
+        eval_strategy="no",
         save_strategy="epoch",
-        fp16=True,
-        report_to="none",
-        remove_unused_columns=True,
+        save_total_limit=1,
+        predict_with_generate=True,
+        fp16=False,
+        report_to=[],
     )
 
 
@@ -168,57 +176,71 @@ def save_adapter(
     print("\nAdapter saved successfully.")
 
 
-def format_example(example):
+def preprocess(example):
     """
-    Convert one structured training example into
-    an instruction-tuning prompt.
+    Convert one example into
+    source/target pairs for FLAN.
     """
 
     resources = "\n".join(
-        [
-            f"- {r['title']} ({r['priority']})"
-            for r in example["input"]["recommended_resources"]
-        ]
+        f"- {r['title']} ({r['priority']})"
+        for r in example["input"]["recommended_resources"]
     )
 
-    matched = ", ".join(example["input"]["matched_skills"])
-
-    missing = ", ".join(example["input"]["missing_skills"])
-
-    prompt = (
-        f"### Instruction\n\n"
+    source = (
         f"{example['instruction']}\n\n"
-        f"### Input\n\n"
         f"Job Title: {example['input']['job_title']}\n"
         f"Readiness: {example['input']['readiness']}\n"
         f"Readiness Score: {example['input']['readiness_score']}\n\n"
-        f"Matched Skills:\n{matched}\n\n"
-        f"Missing Skills:\n{missing}\n\n"
-        f"Recommended Resources:\n{resources}\n\n"
-        f"### Response\n\n"
-        f"{example['output']}"
+        f"Matched Skills:\n"
+        f"{', '.join(example['input']['matched_skills'])}\n\n"
+        f"Missing Skills:\n"
+        f"{', '.join(example['input']['missing_skills'])}\n\n"
+        f"Recommended Resources:\n"
+        f"{resources}"
     )
 
-    return prompt
+    return {
+        "source": source,
+        "target": example["output"],
+    }
+
+
+def tokenize(batch):
+    """
+    Tokenize source and target.
+    """
+
+    model_inputs = tokenizer(
+        batch["source"],
+        max_length=384,
+        truncation=True,
+    )
+
+    labels = tokenizer(
+        text_target=batch["target"],
+        max_length=256,
+        truncation=True,
+    )
+
+    model_inputs["labels"] = labels["input_ids"]
+
+    return model_inputs
 
 
 if __name__ == "__main__":
 
     dataset = load_training_dataset()
+    dataset = dataset.map(preprocess)
 
     print(dataset)
 
     tokenizer = load_tokenizer()
+    globals()["tokenizer"] = tokenizer
 
     print("\nTokenizer loaded successfully.")
 
     model = load_model()
-
-    # Reduce GPU memory usage
-    model.config.use_cache = False
-
-    # Save memory during backpropagation
-    model.gradient_checkpointing_enable()
 
     model = attach_lora(model)
 
@@ -228,32 +250,15 @@ if __name__ == "__main__":
 
     print("\nPreparing trainer...")
 
-    print("\nColumns:")
-
-    print(dataset.column_names)
-
-    print("\nFirst example:")
-
-    print(dataset[0])
-
     trainer = build_trainer(
         model,
         tokenizer,
         dataset,
     )
-    print("\nTrainer train dataset columns:")
-    print(trainer.train_dataset.column_names)
-
-    print("\nTrainer first example:")
-    print(trainer.train_dataset[0])
 
     print("\nStarting training...\n")
 
     trainer.train()
-
-    print(dataset.column_names)
-
-    print(dataset[0])
 
     save_adapter(
         trainer,
